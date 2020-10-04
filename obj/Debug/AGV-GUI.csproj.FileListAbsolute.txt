@@ -1,0 +1,11 @@
+E:\GitHub\AGV-GUI\AGV-GUI\bin\Debug\AGV-GUI.exe.config
+E:\GitHub\AGV-GUI\AGV-GUI\bin\Debug\AGV-GUI.exe
+E:\GitHub\AGV-GUI\AGV-GUI\bin\Debug\AGV-GUI.pdb
+E:\GitHub\AGV-GUI\AGV-GUI\obj\Debug\AGV-GUI.csprojAssemblyReference.cache
+E:\GitHub\AGV-GUI\AGV-GUI\obj\Debug\AGV_GUI.Form1.resources
+E:\GitHub\AGV-GUI\AGV-GUI\obj\Debug\AGV_GUI.Properties.Resources.resources
+E:\GitHub\AGV-GUI\AGV-GUI\obj\Debug\AGV-GUI.csproj.GenerateResource.cache
+E:\GitHub\AGV-GUI\AGV-GUI\obj\Debug\AGV-GUI.csproj.CoreCompileInputs.cache
+E:\GitHub\AGV-GUI\AGV-GUI\obj\Debug\AGV-GUI.exe
+E:\GitHub\AGV-GUI\AGV-GUI\obj\Debug\AGV-GUI.pdb
+E:\GitHub\AGV-GUI\AGV-GUI\obj\Debug\AGV_GUI.Joystick.resources
