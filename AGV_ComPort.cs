@@ -15,13 +15,24 @@ namespace AGV_GUI
 		CC,
 		COMS,
 		PC,
-		PC_MOVE
+		PC_MOVE,
+		CM
+	}
+	public struct GUI_MODULES
+	{
+		public bool joystick;
+		public bool pidTuning;
+	}
+	public class AGV_MsgDataPair
+	{
+		public string paramStr;
+		public double value;
 	}
 	public class AGV_Msg
 	{
 		public MSG_ORIGIN_T origin;
 		public string id;
-		public double value;
+		public List<AGV_MsgDataPair> data;
 		public MSG_ORIGIN_T GetOriginFromString(string s)
 		{
 			MSG_ORIGIN_T retVal = MSG_ORIGIN_T.NONE;
@@ -39,8 +50,15 @@ namespace AGV_GUI
 				case "PC_MOVE":
 					retVal = MSG_ORIGIN_T.PC_MOVE;
 					break;
+				case "CM":
+					retVal = MSG_ORIGIN_T.CM;
+					break;
 			}
 			return retVal;
+		}
+		public AGV_Msg()
+		{
+			data = new List<AGV_MsgDataPair>();
 		}
 	}
 	public class AGV_State
@@ -52,7 +70,8 @@ namespace AGV_GUI
 	{
 		public SerialPort port;
 		public List<AGV_Msg> msgList;
-		public AGV_State state;
+		public AGV_State state;		// Stores AGV current state values
+		public GUI_MODULES activeModules;	// States which modules are active from the GUI
 		public AGV_ComPort(SerialPort s)
 		{
 			port = s;
@@ -63,6 +82,11 @@ namespace AGV_GUI
 			if(port.IsOpen)
 				port.Write(s + "\r\n");
 		}
+		/// <summary>
+		/// Messages come as:
+		/// " MOD_NAME + '>' + MSG_ID + ':' + PARAM1 + '=' + VALUE1 + ';' + PARAM2 + ...
+		/// </summary>
+		/// <param name="s"></param>
 		public void PortProcessDataString(string s)
 		{
 			AGV_Msg msg = new AGV_Msg();
@@ -71,19 +95,44 @@ namespace AGV_GUI
 				return;
 			msg.origin = msg.GetOriginFromString(s.Substring(0, originEnd));
 
-			int idEnd = s.IndexOf("=");
-			if(idEnd == -1)	// No value for this message. ID is until the EOF
+			int idEnd = s.IndexOf(";");
+			if(idEnd == -1)	// No params for this message. ID is until the EOF
 				idEnd = s.Length;
 			msg.id = s.Substring(originEnd+1, idEnd-originEnd-1);
 
 			// Check if theres is a value and extract
 			if(idEnd != s.Length)
 			{
-				if(double.TryParse(s.Substring(idEnd+1), System.Globalization.NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out msg.value) == false)
-					msg.value = -999;
+				string subS = s.Substring(idEnd+1);	// Get 
+				AGV_MsgDataPair pair = new AGV_MsgDataPair();
+				int divIndex = subS.IndexOf(";");
+				int equalIndex = subS.IndexOf("=");
+
+				do
+				{
+					if(equalIndex == -1)	// ERROR
+						break;
+						
+					if(divIndex == -1)	// Then this is the last param
+						divIndex = subS.Length;
+
+					// Get data from string
+					pair.paramStr = subS.Substring(0,equalIndex);
+					if(double.TryParse(subS.Substring(equalIndex+1,divIndex-1-equalIndex), System.Globalization.NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out pair.value) == false)
+						pair.value = -999;
+					msg.data.Add(pair);
+						
+					if(divIndex < subS.Length)	// Then prepare for next param
+					{
+						subS = subS.Substring(divIndex+1);
+						divIndex = subS.IndexOf(";");
+						equalIndex = subS.IndexOf("=");
+						pair = new AGV_MsgDataPair();
+					}
+				} while(divIndex < subS.Length);
 			}
 
-			msgList.Add(msg);
+			msgList.Add(msg);			
 		}
 	}
 }

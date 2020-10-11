@@ -14,6 +14,8 @@ namespace AGV_GUI
 {
 	public partial class Form1 : Form
 	{
+		PID_Tuning pidForm;
+		Joystick joystickForm;
 		public Form1()
 		{
 			InitializeComponent();
@@ -94,7 +96,10 @@ namespace AGV_GUI
 
 			txtBox_LatestMsg_origin.Text = agv.msgList.Last().origin.ToString();
 			txtBox_LatestMsg_id.Text = agv.msgList.Last().id;
-			txtBox_LatestMsg_value.Text = agv.msgList.Last().value.ToString();
+
+			// Notify every form to read new message
+			if(agv.activeModules.pidTuning == true)
+				pidForm.PID_ProcessNewMsg();
 		}
 		#endregion
 		private void Console_PrintMsg(string msg) 
@@ -158,8 +163,14 @@ namespace AGV_GUI
 
 		private void but_startJoystick_Click(object sender, EventArgs e)
 		{
-			Joystick joystickForm = new Joystick(agv);
+			joystickForm = new Joystick(agv);
 			joystickForm.Show();
+		}
+
+		private void but_startPidTuning_Click(object sender, EventArgs e)
+		{
+			pidForm = new PID_Tuning(agv);
+			pidForm.Show();
 		}
 	}
 }

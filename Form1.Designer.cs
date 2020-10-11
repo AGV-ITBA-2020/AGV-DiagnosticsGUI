@@ -39,13 +39,12 @@
 			this.txtBox_sendData = new System.Windows.Forms.TextBox();
 			this.but_Send = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.label1 = new System.Windows.Forms.Label();
-			this.txtBox_LatestMsg_origin = new System.Windows.Forms.TextBox();
 			this.txtBox_LatestMsg_id = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
-			this.txtBox_LatestMsg_value = new System.Windows.Forms.TextBox();
-			this.label3 = new System.Windows.Forms.Label();
+			this.txtBox_LatestMsg_origin = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
 			this.but_startJoystick = new System.Windows.Forms.Button();
+			this.but_startPidTuning = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
@@ -123,35 +122,16 @@
 			// 
 			// groupBox2
 			// 
-			this.groupBox2.Controls.Add(this.txtBox_LatestMsg_value);
-			this.groupBox2.Controls.Add(this.label3);
 			this.groupBox2.Controls.Add(this.txtBox_LatestMsg_id);
 			this.groupBox2.Controls.Add(this.label2);
 			this.groupBox2.Controls.Add(this.txtBox_LatestMsg_origin);
 			this.groupBox2.Controls.Add(this.label1);
 			this.groupBox2.Location = new System.Drawing.Point(626, 12);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(162, 102);
+			this.groupBox2.Size = new System.Drawing.Size(162, 77);
 			this.groupBox2.TabIndex = 7;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "AGV Lastest Message";
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(6, 22);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(45, 13);
-			this.label1.TabIndex = 0;
-			this.label1.Text = "Modulo:";
-			// 
-			// txtBox_LatestMsg_origin
-			// 
-			this.txtBox_LatestMsg_origin.Location = new System.Drawing.Point(57, 19);
-			this.txtBox_LatestMsg_origin.Name = "txtBox_LatestMsg_origin";
-			this.txtBox_LatestMsg_origin.ReadOnly = true;
-			this.txtBox_LatestMsg_origin.Size = new System.Drawing.Size(100, 20);
-			this.txtBox_LatestMsg_origin.TabIndex = 1;
 			// 
 			// txtBox_LatestMsg_id
 			// 
@@ -170,22 +150,22 @@
 			this.label2.TabIndex = 2;
 			this.label2.Text = "ID:";
 			// 
-			// txtBox_LatestMsg_value
+			// txtBox_LatestMsg_origin
 			// 
-			this.txtBox_LatestMsg_value.Location = new System.Drawing.Point(56, 71);
-			this.txtBox_LatestMsg_value.Name = "txtBox_LatestMsg_value";
-			this.txtBox_LatestMsg_value.ReadOnly = true;
-			this.txtBox_LatestMsg_value.Size = new System.Drawing.Size(100, 20);
-			this.txtBox_LatestMsg_value.TabIndex = 5;
+			this.txtBox_LatestMsg_origin.Location = new System.Drawing.Point(57, 19);
+			this.txtBox_LatestMsg_origin.Name = "txtBox_LatestMsg_origin";
+			this.txtBox_LatestMsg_origin.ReadOnly = true;
+			this.txtBox_LatestMsg_origin.Size = new System.Drawing.Size(100, 20);
+			this.txtBox_LatestMsg_origin.TabIndex = 1;
 			// 
-			// label3
+			// label1
 			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(5, 74);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(34, 13);
-			this.label3.TabIndex = 4;
-			this.label3.Text = "Valor:";
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(6, 22);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(45, 13);
+			this.label1.TabIndex = 0;
+			this.label1.Text = "Modulo:";
 			// 
 			// but_startJoystick
 			// 
@@ -197,11 +177,22 @@
 			this.but_startJoystick.UseVisualStyleBackColor = true;
 			this.but_startJoystick.Click += new System.EventHandler(this.but_startJoystick_Click);
 			// 
+			// but_startPidTuning
+			// 
+			this.but_startPidTuning.Location = new System.Drawing.Point(634, 187);
+			this.but_startPidTuning.Name = "but_startPidTuning";
+			this.but_startPidTuning.Size = new System.Drawing.Size(147, 34);
+			this.but_startPidTuning.TabIndex = 9;
+			this.but_startPidTuning.Text = "PID Tuning";
+			this.but_startPidTuning.UseVisualStyleBackColor = true;
+			this.but_startPidTuning.Click += new System.EventHandler(this.but_startPidTuning_Click);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.but_startPidTuning);
 			this.Controls.Add(this.but_startJoystick);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.but_Send);
@@ -209,7 +200,7 @@
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.rTxtBox_Output);
 			this.Name = "Form1";
-			this.Text = "Form1";
+			this.Text = "AGV-GUI v1.0";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.groupBox1.ResumeLayout(false);
@@ -232,12 +223,11 @@
 		private System.Windows.Forms.Button but_Send;
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.TextBox txtBox_LatestMsg_value;
-		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.TextBox txtBox_LatestMsg_id;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.TextBox txtBox_LatestMsg_origin;
 		private System.Windows.Forms.Button but_startJoystick;
+		private System.Windows.Forms.Button but_startPidTuning;
 	}
 }
 

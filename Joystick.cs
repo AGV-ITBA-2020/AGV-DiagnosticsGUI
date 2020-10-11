@@ -20,6 +20,7 @@ namespace AGV_GUI
 			trackBar_angularSpeed.Value = 0;
 			trackBar_linealSpeed.Value = 0;
 			agv = a;
+			agv.activeModules.joystick = true;
 			timer1 = new System.Windows.Forms.Timer();
 			timer1.Interval = 1000;	// 500ms period
 			timer1.Tick += new EventHandler(TimerEventProcessor);
@@ -77,6 +78,7 @@ namespace AGV_GUI
 
 		private void Joystick_FormClosing(object sender, FormClosingEventArgs e)
 		{
+			agv.activeModules.joystick = false;
 			timer1.Stop();
 			timer1.Dispose();
 		}
