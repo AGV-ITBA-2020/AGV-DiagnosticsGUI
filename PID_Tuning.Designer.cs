@@ -51,10 +51,17 @@
 			this.txtBox_lMtr_Kp = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.plotter_lMotor = new ScottPlot.FormsPlot();
+			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+			this.status_speedMsg = new System.Windows.Forms.ToolStripStatusLabel();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.pictureBox2 = new System.Windows.Forms.PictureBox();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			this.groupBox4.SuspendLayout();
+			this.statusStrip1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// plotter_rMotor
@@ -66,6 +73,7 @@
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.pictureBox1);
 			this.groupBox1.Controls.Add(this.groupBox2);
 			this.groupBox1.Controls.Add(this.plotter_rMotor);
 			this.groupBox1.Location = new System.Drawing.Point(12, 12);
@@ -165,6 +173,7 @@
 			// 
 			// groupBox3
 			// 
+			this.groupBox3.Controls.Add(this.pictureBox2);
 			this.groupBox3.Controls.Add(this.groupBox4);
 			this.groupBox3.Controls.Add(this.plotter_lMotor);
 			this.groupBox3.Location = new System.Drawing.Point(12, 376);
@@ -269,11 +278,48 @@
 			this.plotter_lMotor.Size = new System.Drawing.Size(862, 318);
 			this.plotter_lMotor.TabIndex = 0;
 			// 
+			// statusStrip1
+			// 
+			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.status_speedMsg});
+			this.statusStrip1.Location = new System.Drawing.Point(0, 728);
+			this.statusStrip1.Name = "statusStrip1";
+			this.statusStrip1.Size = new System.Drawing.Size(1028, 22);
+			this.statusStrip1.TabIndex = 3;
+			this.statusStrip1.Text = "Estado:";
+			// 
+			// status_speedMsg
+			// 
+			this.status_speedMsg.Name = "status_speedMsg";
+			this.status_speedMsg.Size = new System.Drawing.Size(28, 17);
+			this.status_speedMsg.Text = "       ";
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.Image = global::AGV_GUI.Properties.Resources.right;
+			this.pictureBox1.InitialImage = global::AGV_GUI.Properties.Resources.right;
+			this.pictureBox1.Location = new System.Drawing.Point(874, 292);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(79, 45);
+			this.pictureBox1.TabIndex = 2;
+			this.pictureBox1.TabStop = false;
+			// 
+			// pictureBox2
+			// 
+			this.pictureBox2.Image = global::AGV_GUI.Properties.Resources.left;
+			this.pictureBox2.InitialImage = global::AGV_GUI.Properties.Resources.right;
+			this.pictureBox2.Location = new System.Drawing.Point(874, 292);
+			this.pictureBox2.Name = "pictureBox2";
+			this.pictureBox2.Size = new System.Drawing.Size(79, 45);
+			this.pictureBox2.TabIndex = 3;
+			this.pictureBox2.TabStop = false;
+			// 
 			// PID_Tuning
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1028, 729);
+			this.ClientSize = new System.Drawing.Size(1028, 750);
+			this.Controls.Add(this.statusStrip1);
 			this.Controls.Add(this.groupBox3);
 			this.Controls.Add(this.groupBox1);
 			this.Margin = new System.Windows.Forms.Padding(2);
@@ -286,7 +332,12 @@
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox4.ResumeLayout(false);
 			this.groupBox4.PerformLayout();
+			this.statusStrip1.ResumeLayout(false);
+			this.statusStrip1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -314,5 +365,9 @@
 		private System.Windows.Forms.TextBox txtBox_lMtr_Kp;
 		private System.Windows.Forms.Label label6;
 		private ScottPlot.FormsPlot plotter_lMotor;
+		private System.Windows.Forms.StatusStrip statusStrip1;
+		private System.Windows.Forms.ToolStripStatusLabel status_speedMsg;
+		private System.Windows.Forms.PictureBox pictureBox1;
+		private System.Windows.Forms.PictureBox pictureBox2;
 	}
 }

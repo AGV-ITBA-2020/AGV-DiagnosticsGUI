@@ -32,7 +32,7 @@ namespace AGV_GUI
 	{
 		public MSG_ORIGIN_T origin;
 		public string id;
-		public List<AGV_MsgDataPair> data;
+		public List<double> data;
 		public MSG_ORIGIN_T GetOriginFromString(string s)
 		{
 			MSG_ORIGIN_T retVal = MSG_ORIGIN_T.NONE;
@@ -58,7 +58,7 @@ namespace AGV_GUI
 		}
 		public AGV_Msg()
 		{
-			data = new List<AGV_MsgDataPair>();
+			data = new List<double>();
 		}
 	}
 	public class AGV_State
@@ -87,52 +87,99 @@ namespace AGV_GUI
 		/// " MOD_NAME + '>' + MSG_ID + ':' + PARAM1 + '=' + VALUE1 + ';' + PARAM2 + ...
 		/// </summary>
 		/// <param name="s"></param>
-		public void PortProcessDataString(string s)
+		public bool PortProcessDataString(string s)
 		{
+			bool msgOk = true;
+
 			AGV_Msg msg = new AGV_Msg();
 			int originEnd = s.IndexOf('>');
 			if(originEnd == -1)	// Nothing found. Return
-				return;
-			msg.origin = msg.GetOriginFromString(s.Substring(0, originEnd));
-
-			int idEnd = s.IndexOf(";");
-			if(idEnd == -1)	// No params for this message. ID is until the EOF
-				idEnd = s.Length;
-			msg.id = s.Substring(originEnd+1, idEnd-originEnd-1);
-
-			// Check if theres is a value and extract
-			if(idEnd != s.Length)
+				msgOk = false;
+			else
 			{
-				string subS = s.Substring(idEnd+1);	// Get 
-				AGV_MsgDataPair pair = new AGV_MsgDataPair();
-				int divIndex = subS.IndexOf(";");
-				int equalIndex = subS.IndexOf("=");
+				msg.origin = msg.GetOriginFromString(s.Substring(0, originEnd));
 
-				do
+				int idEnd = s.IndexOf(";");
+				if(idEnd == -1)	// No params for this message. ID is until the EOF
+					idEnd = s.Length;
+
+				if(( idEnd-originEnd-1) > 0)
+					msg.id = s.Substring(originEnd+1, idEnd-originEnd-1);
+				else
+					msgOk = false;
+
+				// Check if theres is a value and extract
+				if(msgOk && idEnd < s.Length)
 				{
-					if(equalIndex == -1)	// ERROR
-						break;
-						
-					if(divIndex == -1)	// Then this is the last param
-						divIndex = subS.Length;
+					string subS = s.Substring(idEnd+1);	
+					double value= new double();
+					int divIndex = subS.IndexOf(";");
 
-					// Get data from string
-					pair.paramStr = subS.Substring(0,equalIndex);
-					if(double.TryParse(subS.Substring(equalIndex+1,divIndex-1-equalIndex), System.Globalization.NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out pair.value) == false)
-						pair.value = -999;
-					msg.data.Add(pair);
-						
-					if(divIndex < subS.Length)	// Then prepare for next param
-					{
-						subS = subS.Substring(divIndex+1);
-						divIndex = subS.IndexOf(";");
-						equalIndex = subS.IndexOf("=");
-						pair = new AGV_MsgDataPair();
-					}
-				} while(divIndex < subS.Length);
+					do
+					{							
+						if(divIndex == -1)	// Then this is the last param
+							divIndex = subS.Length;
+
+						if(double.TryParse(subS.Substring(0,divIndex), System.Globalization.NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out value) == false)
+						{
+							msgOk = false;
+							value = -999;
+							break;
+						}
+						msg.data.Add(value);
+							
+						if(divIndex < subS.Length)	// Then prepare for next param
+						{
+							subS = subS.Substring(divIndex+1);
+							divIndex = subS.IndexOf(";");
+							value = new double();
+						}
+					} while(divIndex < subS.Length);
+				}
+				if(msgOk == true)
+					msgList.Add(msg);
 			}
 
-			msgList.Add(msg);			
+			return msgOk;
 		}
 	}
 }
+
+/*	CODE FOR PARSING AGV_DATA_PAIR
+ * 				if(msgOk && idEnd != s.Length)
+				{
+					string subS = s.Substring(idEnd+1);	// Get 
+					AGV_MsgDataPair pair = new AGV_MsgDataPair();
+					int divIndex = subS.IndexOf(";");
+					int equalIndex = subS.IndexOf("=");
+
+					do
+					{
+						if(equalIndex == -1)	// ERROR
+							break;
+							
+						if(divIndex == -1)	// Then this is the last param
+							divIndex = subS.Length;
+
+						// Get data from string
+						pair.paramStr = subS.Substring(0,equalIndex);
+						if(divIndex-1-equalIndex <= 0)
+							msgOk = false;
+						if(msgOk && double.TryParse(subS.Substring(equalIndex+1,divIndex-1-equalIndex), System.Globalization.NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out pair.value) == false)
+						{
+							msgOk = false;
+							pair.value = -999;
+							break;
+						}
+						msg.data.Add(pair);
+							
+						if(divIndex < subS.Length)	// Then prepare for next param
+						{
+							subS = subS.Substring(divIndex+1);
+							divIndex = subS.IndexOf(";");
+							equalIndex = subS.IndexOf("=");
+							pair = new AGV_MsgDataPair();
+						}
+					} while(divIndex < subS.Length);
+				}
+ */

@@ -45,8 +45,13 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.but_startJoystick = new System.Windows.Forms.Button();
 			this.but_startPidTuning = new System.Windows.Forms.Button();
+			this.but_refreshPorts = new System.Windows.Forms.Button();
+			this.but_clearConsole = new System.Windows.Forms.Button();
+			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+			this.status_mainForm = new System.Windows.Forms.ToolStripStatusLabel();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
+			this.statusStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// rTxtBox_Output
@@ -70,7 +75,7 @@
 			// 
 			// but_OpenPort
 			// 
-			this.but_OpenPort.Location = new System.Drawing.Point(191, 19);
+			this.but_OpenPort.Location = new System.Drawing.Point(232, 19);
 			this.but_OpenPort.Name = "but_OpenPort";
 			this.but_OpenPort.Size = new System.Drawing.Size(75, 23);
 			this.but_OpenPort.TabIndex = 2;
@@ -80,12 +85,13 @@
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.but_refreshPorts);
 			this.groupBox1.Controls.Add(this.selBox_baudRate);
 			this.groupBox1.Controls.Add(this.selBox_ComPorts);
 			this.groupBox1.Controls.Add(this.but_OpenPort);
 			this.groupBox1.Location = new System.Drawing.Point(12, 12);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(280, 54);
+			this.groupBox1.Size = new System.Drawing.Size(394, 54);
 			this.groupBox1.TabIndex = 4;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Port control";
@@ -98,9 +104,9 @@
             "115200"});
 			this.selBox_baudRate.Location = new System.Drawing.Point(133, 19);
 			this.selBox_baudRate.Name = "selBox_baudRate";
-			this.selBox_baudRate.Size = new System.Drawing.Size(52, 21);
+			this.selBox_baudRate.Size = new System.Drawing.Size(64, 21);
 			this.selBox_baudRate.TabIndex = 3;
-			this.selBox_baudRate.Text = "9600";
+			this.selBox_baudRate.Text = "115200";
 			// 
 			// txtBox_sendData
 			// 
@@ -187,11 +193,49 @@
 			this.but_startPidTuning.UseVisualStyleBackColor = true;
 			this.but_startPidTuning.Click += new System.EventHandler(this.but_startPidTuning_Click);
 			// 
+			// but_refreshPorts
+			// 
+			this.but_refreshPorts.Location = new System.Drawing.Point(313, 19);
+			this.but_refreshPorts.Name = "but_refreshPorts";
+			this.but_refreshPorts.Size = new System.Drawing.Size(75, 23);
+			this.but_refreshPorts.TabIndex = 4;
+			this.but_refreshPorts.Text = "Refresh";
+			this.but_refreshPorts.UseVisualStyleBackColor = true;
+			this.but_refreshPorts.Click += new System.EventHandler(this.but_refreshPorts_Click);
+			// 
+			// but_clearConsole
+			// 
+			this.but_clearConsole.Location = new System.Drawing.Point(412, 388);
+			this.but_clearConsole.Name = "but_clearConsole";
+			this.but_clearConsole.Size = new System.Drawing.Size(75, 23);
+			this.but_clearConsole.TabIndex = 10;
+			this.but_clearConsole.Text = "Clear";
+			this.but_clearConsole.UseVisualStyleBackColor = true;
+			this.but_clearConsole.Click += new System.EventHandler(this.but_clearConsole_Click);
+			// 
+			// statusStrip1
+			// 
+			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.status_mainForm});
+			this.statusStrip1.Location = new System.Drawing.Point(0, 445);
+			this.statusStrip1.Name = "statusStrip1";
+			this.statusStrip1.Size = new System.Drawing.Size(800, 22);
+			this.statusStrip1.TabIndex = 11;
+			this.statusStrip1.Text = "statusStrip1";
+			// 
+			// status_mainForm
+			// 
+			this.status_mainForm.Name = "status_mainForm";
+			this.status_mainForm.Size = new System.Drawing.Size(22, 17);
+			this.status_mainForm.Text = "     ";
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.ClientSize = new System.Drawing.Size(800, 467);
+			this.Controls.Add(this.statusStrip1);
+			this.Controls.Add(this.but_clearConsole);
 			this.Controls.Add(this.but_startPidTuning);
 			this.Controls.Add(this.but_startJoystick);
 			this.Controls.Add(this.groupBox2);
@@ -206,6 +250,8 @@
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
+			this.statusStrip1.ResumeLayout(false);
+			this.statusStrip1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -228,6 +274,10 @@
 		private System.Windows.Forms.TextBox txtBox_LatestMsg_origin;
 		private System.Windows.Forms.Button but_startJoystick;
 		private System.Windows.Forms.Button but_startPidTuning;
+		private System.Windows.Forms.Button but_refreshPorts;
+		private System.Windows.Forms.Button but_clearConsole;
+		private System.Windows.Forms.StatusStrip statusStrip1;
+		private System.Windows.Forms.ToolStripStatusLabel status_mainForm;
 	}
 }
 

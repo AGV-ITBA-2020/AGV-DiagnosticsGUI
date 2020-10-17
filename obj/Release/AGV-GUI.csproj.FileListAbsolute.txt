@@ -1,0 +1,16 @@
+E:\GitHub\AGV-GUI\AGV-DiagnosticsGUI\bin\Release\AGV-GUI.exe.config
+E:\GitHub\AGV-GUI\AGV-DiagnosticsGUI\bin\Release\AGV-GUI.exe
+E:\GitHub\AGV-GUI\AGV-DiagnosticsGUI\bin\Release\AGV-GUI.pdb
+E:\GitHub\AGV-GUI\AGV-DiagnosticsGUI\bin\Release\ScottPlot.dll
+E:\GitHub\AGV-GUI\AGV-DiagnosticsGUI\bin\Release\ScottPlot.WinForms.dll
+E:\GitHub\AGV-GUI\AGV-DiagnosticsGUI\bin\Release\System.Drawing.Common.dll
+E:\GitHub\AGV-GUI\AGV-DiagnosticsGUI\obj\Release\AGV-GUI.csprojAssemblyReference.cache
+E:\GitHub\AGV-GUI\AGV-DiagnosticsGUI\obj\Release\AGV_GUI.Form1.resources
+E:\GitHub\AGV-GUI\AGV-DiagnosticsGUI\obj\Release\AGV_GUI.Joystick.resources
+E:\GitHub\AGV-GUI\AGV-DiagnosticsGUI\obj\Release\AGV_GUI.PID_Tuning.resources
+E:\GitHub\AGV-GUI\AGV-DiagnosticsGUI\obj\Release\AGV_GUI.Properties.Resources.resources
+E:\GitHub\AGV-GUI\AGV-DiagnosticsGUI\obj\Release\AGV-GUI.csproj.GenerateResource.cache
+E:\GitHub\AGV-GUI\AGV-DiagnosticsGUI\obj\Release\AGV-GUI.csproj.CoreCompileInputs.cache
+E:\GitHub\AGV-GUI\AGV-DiagnosticsGUI\obj\Release\AGV-GUI.csproj.CopyComplete
+E:\GitHub\AGV-GUI\AGV-DiagnosticsGUI\obj\Release\AGV-GUI.exe
+E:\GitHub\AGV-GUI\AGV-DiagnosticsGUI\obj\Release\AGV-GUI.pdb

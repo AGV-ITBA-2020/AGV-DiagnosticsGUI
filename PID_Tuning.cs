@@ -70,7 +70,6 @@ namespace AGV_GUI
 			agv.activeModules.pidTuning = true;
 
 			speedData = new SpeedSeries();
-			speedData.AddData(0,0,0,0);// Initialize only to start plotter
 			
 			AskAgvForPidSettings();
 		}
@@ -79,33 +78,39 @@ namespace AGV_GUI
 			AGV_Msg msg = agv.msgList.Last();
 			if(msg.origin == MSG_ORIGIN_T.CM)
 			{
-				if(msg.id == "SPEED")
+				if(msg.id == "SPD")
 				{
-					speedData.AddData(msg.data[0].value, msg.data[1].value, msg.data[2].value, msg.data[3].value);	// Add data to series.
-					// Plot right motor speed
-					plotter_rMotor.plt.Clear();
-					plot_vR = plotter_rMotor.plt.PlotSignal(speedData.vR.ToArray(), color: speedData.vR_color);
-					plot_wR = plotter_rMotor.plt.PlotSignal(speedData.wR.ToArray(), color: speedData.wR_color);
-					plotter_rMotor.plt.AxisAuto();
-					plotter_rMotor.Render();
-					// Plot left motor speed
-					plotter_lMotor.plt.Clear();
-					plot_vL = plotter_lMotor.plt.PlotSignal(speedData.vL.ToArray(), color: speedData.vL_color);
-					plot_wL = plotter_lMotor.plt.PlotSignal(speedData.wL.ToArray(), color: speedData.wL_color);
-					plotter_lMotor.plt.AxisAuto();
-					plotter_lMotor.Render();
+					if(msg.data.Count == 4)	// Ensure all 4 speeds arrived
+					{
+						status_speedMsg.BackColor = Color.Green;
+						speedData.AddData(msg.data[0], msg.data[1], msg.data[2], msg.data[3]);	// Add data to series.
+						// Plot right motor speed
+						plotter_rMotor.plt.Clear();
+						plot_vR = plotter_rMotor.plt.PlotSignal(speedData.vR.ToArray(), color: speedData.vR_color);
+						plot_wR = plotter_rMotor.plt.PlotSignal(speedData.wR.ToArray(), color: speedData.wR_color);
+						plotter_rMotor.plt.AxisAuto();
+						plotter_rMotor.Render();
+						// Plot left motor speed
+						plotter_lMotor.plt.Clear();
+						plot_vL = plotter_lMotor.plt.PlotSignal(speedData.vL.ToArray(), color: speedData.vL_color);
+						plot_wL = plotter_lMotor.plt.PlotSignal(speedData.wL.ToArray(), color: speedData.wL_color);
+						plotter_lMotor.plt.AxisAuto();
+						plotter_lMotor.Render();
+					}
+					else
+						status_speedMsg.BackColor = Color.Red;
 				}
 				else if(msg.id == "RKPID")
 				{
-					txtBox_rMtr_Kp.Text = msg.data[0].value.ToString(CultureInfo.GetCultureInfo("en-US"));
-					txtBox_rMtr_Ki.Text = msg.data[1].value.ToString(CultureInfo.GetCultureInfo("en-US"));
-					txtBox_rMtr_Kd.Text = msg.data[2].value.ToString(CultureInfo.GetCultureInfo("en-US"));
+					txtBox_rMtr_Kp.Text = msg.data[0].ToString(CultureInfo.GetCultureInfo("en-US"));
+					txtBox_rMtr_Ki.Text = msg.data[1].ToString(CultureInfo.GetCultureInfo("en-US"));
+					txtBox_rMtr_Kd.Text = msg.data[2].ToString(CultureInfo.GetCultureInfo("en-US"));
 				}
 				else if(msg.id == "LKPID")
 				{
-					txtBox_lMtr_Kp.Text = msg.data[0].value.ToString(CultureInfo.GetCultureInfo("en-US"));
-					txtBox_lMtr_Ki.Text = msg.data[1].value.ToString(CultureInfo.GetCultureInfo("en-US"));
-					txtBox_lMtr_Kd.Text = msg.data[2].value.ToString(CultureInfo.GetCultureInfo("en-US"));
+					txtBox_lMtr_Kp.Text = msg.data[0].ToString(CultureInfo.GetCultureInfo("en-US"));
+					txtBox_lMtr_Ki.Text = msg.data[1].ToString(CultureInfo.GetCultureInfo("en-US"));
+					txtBox_lMtr_Kd.Text = msg.data[2].ToString(CultureInfo.GetCultureInfo("en-US"));
 				}
 
 			}
@@ -141,13 +146,13 @@ namespace AGV_GUI
 			if(double.TryParse(Ki, System.Globalization.NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out tempValue) == false)
 				return null;
 			else
-				retVal += "Ki=" + tempValue.ToString("F2", CultureInfo.GetCultureInfo("en-US"));;
+				retVal += ";Ki=" + tempValue.ToString("F2", CultureInfo.GetCultureInfo("en-US"));;
 				
 
 			if(double.TryParse(Kd, System.Globalization.NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out tempValue) == false)
 				return null;
 			else
-				retVal += "Kd=" + tempValue.ToString("F2", CultureInfo.GetCultureInfo("en-US"));;
+				retVal += ";Kd=" + tempValue.ToString("F2", CultureInfo.GetCultureInfo("en-US"));;
 
 
 			return retVal;

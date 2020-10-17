@@ -24,7 +24,12 @@ namespace AGV_GUI
 		private void Form1_Load(object sender, EventArgs e)
 		{
 			serialPort1 = new SerialPort();
+			serialPort1.NewLine = "\r\n";
+			serialPort1.ReadTimeout = 1000;
+			serialPort1.WriteTimeout = 500;
 			PortsUpdateSelectBox();
+			if(selBox_ComPorts.Items.Count == 1)
+				selBox_ComPorts.SelectedItem = selBox_ComPorts.Items[0];
 			CheckForIllegalCrossThreadCalls = false;
 			agv = new AGV_ComPort(serialPort1);
 		}
@@ -34,11 +39,11 @@ namespace AGV_GUI
 		}
 		private void selBox_ComPorts_UpdateComPorts(object sender, EventArgs e)
 		{
-			selBox_ComPorts.Items.Clear();
 			PortsUpdateSelectBox();
 		}
 		private void PortsUpdateSelectBox()
 		{
+			selBox_ComPorts.Items.Clear();
 			string[] ports = SerialPort.GetPortNames();
 			foreach(string port in ports)
 				selBox_ComPorts.Items.Add(port);
@@ -90,20 +95,29 @@ namespace AGV_GUI
 		private void SerialDataRx(object sender, SerialDataReceivedEventArgs e)
 		{
 			SerialPort serial = (SerialPort)sender;
-			string msg = serial.ReadExisting();
-			Console_PrintMsg(msg);
-			agv.PortProcessDataString(msg);
+		//	string msg = serial.ReadExisting();
+			string msg = serial.ReadLine();
+			Console_PrintMsg(msg + "\r\n");
+			if(agv.PortProcessDataString(msg) == true)	// Message was identified OK
+			{
+				status_mainForm.BackColor = Color.Green;
+				txtBox_LatestMsg_origin.Text = agv.msgList.Last().origin.ToString();
+				txtBox_LatestMsg_id.Text = agv.msgList.Last().id;
 
-			txtBox_LatestMsg_origin.Text = agv.msgList.Last().origin.ToString();
-			txtBox_LatestMsg_id.Text = agv.msgList.Last().id;
+				// Notify every form to read new message
+				if(agv.activeModules.pidTuning == true)
+					pidForm.PID_ProcessNewMsg();
+			}
+			else
+				status_mainForm.BackColor = Color.Red;
 
-			// Notify every form to read new message
-			if(agv.activeModules.pidTuning == true)
-				pidForm.PID_ProcessNewMsg();
+
 		}
 		#endregion
 		private void Console_PrintMsg(string msg) 
 		{
+			if(rTxtBox_Output.Lines.Length > 100)
+				rTxtBox_Output.Clear();
 			rTxtBox_Output.AppendText(msg);
 			rTxtBox_Output.SelectionStart = rTxtBox_Output.Text.Length;
 			rTxtBox_Output.ScrollToCaret();
@@ -171,6 +185,16 @@ namespace AGV_GUI
 		{
 			pidForm = new PID_Tuning(agv);
 			pidForm.Show();
+		}
+
+		private void but_refreshPorts_Click(object sender, EventArgs e)
+		{
+			PortsUpdateSelectBox();
+		}
+
+		private void but_clearConsole_Click(object sender, EventArgs e)
+		{
+			rTxtBox_Output.Clear();
 		}
 	}
 }
