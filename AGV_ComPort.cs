@@ -16,7 +16,8 @@ namespace AGV_GUI
 		COMS,
 		PC,
 		PC_MOVE,
-		CM
+		CM,
+		DIAG
 	}
 	public struct GUI_MODULES
 	{
@@ -52,6 +53,9 @@ namespace AGV_GUI
 					break;
 				case "CM":
 					retVal = MSG_ORIGIN_T.CM;
+					break;
+				case "DIAG":
+					retVal = MSG_ORIGIN_T.DIAG;
 					break;
 			}
 			return retVal;
@@ -107,6 +111,8 @@ namespace AGV_GUI
 					msg.id = s.Substring(originEnd+1, idEnd-originEnd-1);
 				else
 					msgOk = false;
+				if(msg.id == "MSG")	// Then dont extract params. Only print on console.
+					idEnd = s.Length;
 
 				// Check if theres is a value and extract
 				if(msgOk && idEnd < s.Length)

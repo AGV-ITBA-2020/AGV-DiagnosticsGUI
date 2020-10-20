@@ -95,21 +95,30 @@ namespace AGV_GUI
 		private void SerialDataRx(object sender, SerialDataReceivedEventArgs e)
 		{
 			SerialPort serial = (SerialPort)sender;
-		//	string msg = serial.ReadExisting();
-			string msg = serial.ReadLine();
-			Console_PrintMsg(msg + "\r\n");
-			if(agv.PortProcessDataString(msg) == true)	// Message was identified OK
+			//	string msg = serial.ReadExisting();
+			bool _continue = true;
+			while(_continue)
 			{
-				status_mainForm.BackColor = Color.Green;
-				txtBox_LatestMsg_origin.Text = agv.msgList.Last().origin.ToString();
-				txtBox_LatestMsg_id.Text = agv.msgList.Last().id;
-
-				// Notify every form to read new message
-				if(agv.activeModules.pidTuning == true)
-					pidForm.PID_ProcessNewMsg();
+				try
+				{
+					string msg = serial.ReadLine();
+					Console_PrintMsg(msg + "\r\n");
+					if(agv.PortProcessDataString(msg) == true)	// Message was identified OK
+					{
+						status_mainForm.BackColor = Color.Green;
+						txtBox_LatestMsg_origin.Text = agv.msgList.Last().origin.ToString();
+						txtBox_LatestMsg_id.Text = agv.msgList.Last().id;
+					
+						// Notify every form to read new message
+						if(agv.activeModules.pidTuning == true)
+							pidForm.PID_ProcessNewMsg();
+					}		
+					else
+						status_mainForm.BackColor = Color.Red;
+				}
+				catch(TimeoutException){_continue = false;}
 			}
-			else
-				status_mainForm.BackColor = Color.Red;
+			
 
 
 		}

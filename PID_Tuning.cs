@@ -62,16 +62,22 @@ namespace AGV_GUI
 		private ScottPlot.PlottableSignal plot_wR;
 		private ScottPlot.PlottableSignal plot_vL;
 		private ScottPlot.PlottableSignal plot_wL;
+		enum MOTOR{
+			R,
+			L
+		}
 
 		public PID_Tuning(AGV_ComPort a)
 		{
 			InitializeComponent();
+			
 			agv = a;
 			agv.activeModules.pidTuning = true;
-
+			agv.PortSendData("PIDV>START");
 			speedData = new SpeedSeries();
 			
-			AskAgvForPidSettings();
+			AskAgvForPidSettings(MOTOR.R);
+			AskAgvForPidSettings(MOTOR.L);
 		}
 		public void PID_ProcessNewMsg()
 		{
@@ -100,13 +106,13 @@ namespace AGV_GUI
 					else
 						status_speedMsg.BackColor = Color.Red;
 				}
-				else if(msg.id == "RKPID")
+				else if(msg.id == "RPID")
 				{
 					txtBox_rMtr_Kp.Text = msg.data[0].ToString(CultureInfo.GetCultureInfo("en-US"));
 					txtBox_rMtr_Ki.Text = msg.data[1].ToString(CultureInfo.GetCultureInfo("en-US"));
 					txtBox_rMtr_Kd.Text = msg.data[2].ToString(CultureInfo.GetCultureInfo("en-US"));
 				}
-				else if(msg.id == "LKPID")
+				else if(msg.id == "LPID")
 				{
 					txtBox_lMtr_Kp.Text = msg.data[0].ToString(CultureInfo.GetCultureInfo("en-US"));
 					txtBox_lMtr_Ki.Text = msg.data[1].ToString(CultureInfo.GetCultureInfo("en-US"));
@@ -116,23 +122,12 @@ namespace AGV_GUI
 			}
 
 		}
-		private void AskAgvForPidSettings()
-		{
-			agv.PortSendData("CM>Kpid");
-		}
 		private void PID_Config_FormClosing(object sender, FormClosingEventArgs e)
 		{
+			agv.PortSendData("PIDV>STOP");
 			agv.activeModules.pidTuning = false;
 		}
 
-		private void rMotor_sendKpid_Click(object sender, EventArgs e)
-		{
-			string values = PidComs_GetStringForKpid(txtBox_rMtr_Kp.Text, txtBox_rMtr_Ki.Text, txtBox_rMtr_Kd.Text);
-			if( values != null)
-				agv.PortSendData("CM>RKPID;" + values);
-			else
-				MessageBox.Show("Error parseando valores de Kpid", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-		}
 		private string PidComs_GetStringForKpid(string Kp, string Ki, string Kd)
 		{
 			double tempValue = 0.0;
@@ -141,40 +136,49 @@ namespace AGV_GUI
 			if(double.TryParse(Kp, System.Globalization.NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out tempValue) == false)
 				return null;
 			else
-				retVal += "Kp=" + tempValue.ToString("F2", CultureInfo.GetCultureInfo("en-US"));
+				retVal += tempValue.ToString("F2", CultureInfo.GetCultureInfo("en-US"));
 
 			if(double.TryParse(Ki, System.Globalization.NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out tempValue) == false)
 				return null;
 			else
-				retVal += ";Ki=" + tempValue.ToString("F2", CultureInfo.GetCultureInfo("en-US"));;
+				retVal += ";" + tempValue.ToString("F2", CultureInfo.GetCultureInfo("en-US"));;
 				
 
 			if(double.TryParse(Kd, System.Globalization.NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out tempValue) == false)
 				return null;
 			else
-				retVal += ";Kd=" + tempValue.ToString("F2", CultureInfo.GetCultureInfo("en-US"));;
+				retVal += ";" + tempValue.ToString("F2", CultureInfo.GetCultureInfo("en-US"));;
 
 
 			return retVal;
 		}
-
-		private void rMtr_updateKpid_Click(object sender, EventArgs e)
+		private void AskAgvForPidSettings(MOTOR x)
 		{
-			agv.PortSendData("CM>RKPID");
+			agv.PortSendData("PIDV>" + (x==MOTOR.R ? "rRPID" : "rLPID"));
 		}
-
+		private void rMotor_sendKpid_Click(object sender, EventArgs e)
+		{
+			string values = PidComs_GetStringForKpid(txtBox_rMtr_Kp.Text, txtBox_rMtr_Ki.Text, txtBox_rMtr_Kd.Text);
+			if( values != null)
+				agv.PortSendData("PIDV>wRPID;" + values);
+			else
+				MessageBox.Show("Error parseando valores de Kpid", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		}
 		private void lMtr_sendKpid_Click(object sender, EventArgs e)
 		{
 			string values = PidComs_GetStringForKpid(txtBox_lMtr_Kp.Text, txtBox_lMtr_Ki.Text, txtBox_lMtr_Kd.Text);
 			if( values != null)
-				agv.PortSendData("CM>LKPID;" + values);
+				agv.PortSendData("PIDV>wLPID;" + values);
 			else
 				MessageBox.Show("Error parseando valores de Kpid", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
-
+		private void rMtr_updateKpid_Click(object sender, EventArgs e)
+		{
+			AskAgvForPidSettings(MOTOR.R);
+		}
 		private void lMtr_updateKpid_Click(object sender, EventArgs e)
 		{
-			agv.PortSendData("CM>LKPID");
+			AskAgvForPidSettings(MOTOR.L);
 		}
 	}
 }

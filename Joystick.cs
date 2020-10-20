@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace AGV_GUI
 {
@@ -22,10 +23,10 @@ namespace AGV_GUI
 			agv = a;
 			agv.activeModules.joystick = true;
 			timer1 = new System.Windows.Forms.Timer();
-			timer1.Interval = 1000;	// 500ms period
+			timer1.Interval = 500;	// 500ms period
 			timer1.Tick += new EventHandler(TimerEventProcessor);
 			timer1.Start();
-
+			agv.PortSendData("JOY>START");
 			cmdRun = true;
 		}
 		private void TimerEventProcessor(Object myObject, EventArgs myEventArgs) 
@@ -55,29 +56,41 @@ namespace AGV_GUI
 					trackBar_angularSpeed.Value -= (trackBar_angularSpeed.Value > trackBar_angularSpeed.Minimum ? 1 : 0);
 					break;
 				case Keys.Space:
-					eStop();
+					if(cmdRun == true)
+						eStop();
+					else
+						eStopResume();
 					break;
 			}
+		}
+		private void eStopResume()
+		{
+			but_stop.BackColor = Color.Firebrick;
+			but_stop.Text = "STOP (SPC)";
+			cmdRun = true;
 		}
 		private void eStop()
 		{
 			cmdRun = false;
+			trackBar_linealSpeed.Value = 0;
+			trackBar_angularSpeed.Value = 0;
 			SendSpeedValues(0, 0);
+
+			but_stop.BackColor = Color.Green;
+			but_stop.Text = "RESUME (SPC)";
 		}
 		private void but_stop_Click(object sender, EventArgs e)
 		{
 			eStop();
 		}
-		private void SendSpeedValues(double? v=null, double? w=null)
+		private void SendSpeedValues(double v, double w)
 		{
-			if(v!=null)
-				agv.PortSendData("JOY>V="+v.ToString());
-			if(w!=null)
-				agv.PortSendData("JOY>W="+w.ToString());
+			agv.PortSendData("JOY>VWSPD;"+ v.ToString(CultureInfo.GetCultureInfo("en-US")) + ";" + w.ToString(CultureInfo.GetCultureInfo("en-US")));
 		}
 
 		private void Joystick_FormClosing(object sender, FormClosingEventArgs e)
 		{
+			agv.PortSendData("JOY>STOP");
 			agv.activeModules.joystick = false;
 			timer1.Stop();
 			timer1.Dispose();
