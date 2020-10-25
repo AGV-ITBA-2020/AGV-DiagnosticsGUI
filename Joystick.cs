@@ -13,15 +13,35 @@ namespace AGV_GUI
 {
 	public partial class Joystick : Form
 	{
-		private const int TIMER_BASE_PERIOD = 5;	// multiple of timer ticks from main form.
+		private const int TIMER_BASE_PERIOD = 2;	// multiple of timer ticks from main form.
+		private readonly double[] LINEAR_SPEED_MAP = {0, 1};	// Linear speed goes from 0 to 1m/s
+		private readonly double[] ANGULAR_SPEED_MAP = {-1, 1};	// Angular speed goes from -1 to 1rad/s
+		private readonly int[] LINEAR_SPEED_TRACK_LIMITS = {0, 100};
+		private readonly int[] ANGULAR_SPEED_TRACK_LIMITS = {-100, 100};
+		private double linearMapAlpha;
+		private double angularMapAlpha;
 		private int timerCount = 0;
 		private AGV_ComPort agv;
 		private bool cmdRun;
 		public Joystick(AGV_ComPort a)
 		{
 			InitializeComponent();
+
 			trackBar_angularSpeed.Value = 0;
 			trackBar_linealSpeed.Value = 0;
+			trackBar_linealSpeed.Minimum= LINEAR_SPEED_TRACK_LIMITS[0];
+			trackBar_linealSpeed.Maximum = LINEAR_SPEED_TRACK_LIMITS[1];
+			trackBar_angularSpeed.Minimum= ANGULAR_SPEED_TRACK_LIMITS[0];
+			trackBar_angularSpeed.Maximum = ANGULAR_SPEED_TRACK_LIMITS[1];
+			linearMapAlpha = (LINEAR_SPEED_MAP[1]-LINEAR_SPEED_MAP[0])/(LINEAR_SPEED_TRACK_LIMITS[1]-LINEAR_SPEED_TRACK_LIMITS[0]);
+			angularMapAlpha = (ANGULAR_SPEED_MAP[1]-ANGULAR_SPEED_MAP[0])/(ANGULAR_SPEED_TRACK_LIMITS[1]-ANGULAR_SPEED_TRACK_LIMITS[0]);
+			txt_linearMin.Text = LINEAR_SPEED_MAP[0].ToString();
+			txt_linearMax.Text = LINEAR_SPEED_MAP[1].ToString();
+			txt_angularMin.Text = ANGULAR_SPEED_MAP[0].ToString();
+			txt_angularMax.Text = ANGULAR_SPEED_MAP[1].ToString();
+			trackBar_linealSpeed.Value = 0;
+			trackBar_angularSpeed.Value = 0;
+
 			agv = a;
 			agv.activeModules.joystick = true;
 			agv.PortSendData("JOY>START");
@@ -33,11 +53,10 @@ namespace AGV_GUI
 			{
 				timerCount = 0;
 				if(cmdRun == true)
-					SendSpeedValues(v:trackBar_linealSpeed.Value, w: trackBar_angularSpeed.Value);
+					SendSpeedValues(v:  MapLinearControlToSpeed(trackBar_linealSpeed.Value), w: MapAngularControlToSpeed(trackBar_angularSpeed.Value));
 				else
 					eStop();
 			}
-
 		}
 
 		private void Joystick_KeyPressed(object sender, KeyEventArgs e)
@@ -86,13 +105,27 @@ namespace AGV_GUI
 		}
 		private void SendSpeedValues(double v, double w)
 		{
-			agv.PortSendData("JOY>VWSPD;"+ v.ToString(CultureInfo.GetCultureInfo("en-US")) + ";" + w.ToString(CultureInfo.GetCultureInfo("en-US")));
+			txt_actualLinearSpeed.Text = v.ToString("F2", CultureInfo.GetCultureInfo("en-US"));
+			txt_actualAngularSpeed.Text = w.ToString("F2", CultureInfo.GetCultureInfo("en-US"));
+			agv.PortSendData("JOY>VWSPD;"+ txt_actualLinearSpeed.Text + ";" + txt_actualAngularSpeed.Text);
 		}
-
+		private double MapLinearControlToSpeed(int v_track)
+		{
+			return (linearMapAlpha * (v_track - LINEAR_SPEED_TRACK_LIMITS[0]) + LINEAR_SPEED_MAP[0]);
+		}
+		private double MapAngularControlToSpeed(int w_track)
+		{
+			return (angularMapAlpha * (w_track - ANGULAR_SPEED_TRACK_LIMITS[0]) + ANGULAR_SPEED_MAP[0]);
+		}
 		private void Joystick_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			agv.PortSendData("JOY>STOP");
 			agv.activeModules.joystick = false;
+		}
+
+		private void trackBar_linealSpeed_Scroll(object sender, EventArgs e)
+		{
+
 		}
 	}
 }

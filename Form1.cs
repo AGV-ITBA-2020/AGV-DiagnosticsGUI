@@ -20,7 +20,7 @@ namespace AGV_GUI
 		{
 			InitializeComponent();
 			mainTimer = new System.Windows.Forms.Timer();
-			mainTimer.Interval = 200;	// 500ms period
+			mainTimer.Interval = 200;	// 200ms period
 			mainTimer.Tick += new EventHandler(MainTimerCallback);
 		}
 		#region MAIN_FORM_MISC_METHODS
@@ -60,6 +60,8 @@ namespace AGV_GUI
 		}
 		private void PortConnect()
 		{
+			if(selBox_ComPorts.SelectedItem == null)
+				return;
 			bool error = false;
 			if(serialPort1.IsOpen == false)
 			{
@@ -104,7 +106,11 @@ namespace AGV_GUI
 			{
 				try
 				{
-					string msg = serial.ReadLine();
+					string msg;
+					try{
+						msg = serial.ReadLine();
+					}
+					catch(System.IO.IOException){return;}
 					Console_PrintMsg(msg + "\r\n");
 					if(agv.PortProcessDataString(msg) == true)	// Message was identified OK
 					{

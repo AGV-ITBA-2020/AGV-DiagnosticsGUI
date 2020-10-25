@@ -31,7 +31,9 @@
 			this.components = new System.ComponentModel.Container();
 			this.plotter_rMotor = new ScottPlot.FormsPlot();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.but_rMot_exportCSV = new System.Windows.Forms.Button();
 			this.rMtr_updateKpid = new System.Windows.Forms.Button();
 			this.rMtr_sendKpid = new System.Windows.Forms.Button();
 			this.txtBox_rMtr_Kd = new System.Windows.Forms.TextBox();
@@ -41,7 +43,9 @@
 			this.txtBox_rMtr_Kp = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.pictureBox2 = new System.Windows.Forms.PictureBox();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
+			this.but_lMot_exportCSV = new System.Windows.Forms.Button();
 			this.lMtr_updateKpid = new System.Windows.Forms.Button();
 			this.lMtr_sendKpid = new System.Windows.Forms.Button();
 			this.txtBox_lMtr_Kd = new System.Windows.Forms.TextBox();
@@ -53,38 +57,58 @@
 			this.plotter_lMotor = new ScottPlot.FormsPlot();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.status_speedMsg = new System.Windows.Forms.ToolStripStatusLabel();
-			this.pictureBox2 = new System.Windows.Forms.PictureBox();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.chkBox_filterInput = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			this.groupBox4.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			this.groupBox5.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// plotter_rMotor
 			// 
+			this.plotter_rMotor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.plotter_rMotor.Location = new System.Drawing.Point(6, 19);
 			this.plotter_rMotor.Name = "plotter_rMotor";
-			this.plotter_rMotor.Size = new System.Drawing.Size(862, 318);
+			this.plotter_rMotor.Size = new System.Drawing.Size(1113, 318);
 			this.plotter_rMotor.TabIndex = 0;
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox1.Controls.Add(this.pictureBox1);
 			this.groupBox1.Controls.Add(this.groupBox2);
 			this.groupBox1.Controls.Add(this.plotter_rMotor);
 			this.groupBox1.Location = new System.Drawing.Point(12, 12);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(1012, 350);
+			this.groupBox1.Size = new System.Drawing.Size(1263, 350);
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Motor Derecho";
 			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.pictureBox1.Image = global::AGV_GUI.Properties.Resources.right1;
+			this.pictureBox1.InitialImage = global::AGV_GUI.Properties.Resources.right;
+			this.pictureBox1.Location = new System.Drawing.Point(1125, 292);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(79, 45);
+			this.pictureBox1.TabIndex = 2;
+			this.pictureBox1.TabStop = false;
+			// 
 			// groupBox2
 			// 
+			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.Controls.Add(this.but_rMot_exportCSV);
 			this.groupBox2.Controls.Add(this.rMtr_updateKpid);
 			this.groupBox2.Controls.Add(this.rMtr_sendKpid);
 			this.groupBox2.Controls.Add(this.txtBox_rMtr_Kd);
@@ -93,12 +117,22 @@
 			this.groupBox2.Controls.Add(this.label2);
 			this.groupBox2.Controls.Add(this.txtBox_rMtr_Kp);
 			this.groupBox2.Controls.Add(this.label1);
-			this.groupBox2.Location = new System.Drawing.Point(874, 19);
+			this.groupBox2.Location = new System.Drawing.Point(1125, 19);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(132, 192);
+			this.groupBox2.Size = new System.Drawing.Size(132, 267);
 			this.groupBox2.TabIndex = 1;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "PID";
+			// 
+			// but_rMot_exportCSV
+			// 
+			this.but_rMot_exportCSV.Location = new System.Drawing.Point(19, 231);
+			this.but_rMot_exportCSV.Name = "but_rMot_exportCSV";
+			this.but_rMot_exportCSV.Size = new System.Drawing.Size(94, 30);
+			this.but_rMot_exportCSV.TabIndex = 8;
+			this.but_rMot_exportCSV.Text = "Exportar CSV";
+			this.but_rMot_exportCSV.UseVisualStyleBackColor = true;
+			this.but_rMot_exportCSV.Click += new System.EventHandler(this.but_rMot_exportCSV_Click);
 			// 
 			// rMtr_updateKpid
 			// 
@@ -173,18 +207,34 @@
 			// 
 			// groupBox3
 			// 
+			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox3.Controls.Add(this.pictureBox2);
 			this.groupBox3.Controls.Add(this.groupBox4);
 			this.groupBox3.Controls.Add(this.plotter_lMotor);
 			this.groupBox3.Location = new System.Drawing.Point(12, 376);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(1012, 350);
+			this.groupBox3.Size = new System.Drawing.Size(1263, 350);
 			this.groupBox3.TabIndex = 2;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Motor Izquierdo";
 			// 
+			// pictureBox2
+			// 
+			this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.pictureBox2.Image = global::AGV_GUI.Properties.Resources.left1;
+			this.pictureBox2.InitialImage = global::AGV_GUI.Properties.Resources.right;
+			this.pictureBox2.Location = new System.Drawing.Point(1125, 292);
+			this.pictureBox2.Name = "pictureBox2";
+			this.pictureBox2.Size = new System.Drawing.Size(79, 45);
+			this.pictureBox2.TabIndex = 3;
+			this.pictureBox2.TabStop = false;
+			// 
 			// groupBox4
 			// 
+			this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox4.Controls.Add(this.but_lMot_exportCSV);
 			this.groupBox4.Controls.Add(this.lMtr_updateKpid);
 			this.groupBox4.Controls.Add(this.lMtr_sendKpid);
 			this.groupBox4.Controls.Add(this.txtBox_lMtr_Kd);
@@ -193,12 +243,22 @@
 			this.groupBox4.Controls.Add(this.label5);
 			this.groupBox4.Controls.Add(this.txtBox_lMtr_Kp);
 			this.groupBox4.Controls.Add(this.label6);
-			this.groupBox4.Location = new System.Drawing.Point(874, 19);
+			this.groupBox4.Location = new System.Drawing.Point(1125, 19);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(132, 192);
+			this.groupBox4.Size = new System.Drawing.Size(132, 267);
 			this.groupBox4.TabIndex = 1;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "PID";
+			// 
+			// but_lMot_exportCSV
+			// 
+			this.but_lMot_exportCSV.Location = new System.Drawing.Point(19, 231);
+			this.but_lMot_exportCSV.Name = "but_lMot_exportCSV";
+			this.but_lMot_exportCSV.Size = new System.Drawing.Size(94, 30);
+			this.but_lMot_exportCSV.TabIndex = 9;
+			this.but_lMot_exportCSV.Text = "Exportar CSV";
+			this.but_lMot_exportCSV.UseVisualStyleBackColor = true;
+			this.but_lMot_exportCSV.Click += new System.EventHandler(this.but_lMot_exportCSV_Click);
 			// 
 			// lMtr_updateKpid
 			// 
@@ -273,9 +333,12 @@
 			// 
 			// plotter_lMotor
 			// 
+			this.plotter_lMotor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.plotter_lMotor.Location = new System.Drawing.Point(6, 19);
 			this.plotter_lMotor.Name = "plotter_lMotor";
-			this.plotter_lMotor.Size = new System.Drawing.Size(862, 318);
+			this.plotter_lMotor.Size = new System.Drawing.Size(1113, 318);
 			this.plotter_lMotor.TabIndex = 0;
 			// 
 			// statusStrip1
@@ -284,7 +347,7 @@
             this.status_speedMsg});
 			this.statusStrip1.Location = new System.Drawing.Point(0, 728);
 			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(1028, 22);
+			this.statusStrip1.Size = new System.Drawing.Size(1406, 22);
 			this.statusStrip1.TabIndex = 3;
 			this.statusStrip1.Text = "Estado:";
 			// 
@@ -294,48 +357,54 @@
 			this.status_speedMsg.Size = new System.Drawing.Size(28, 17);
 			this.status_speedMsg.Text = "       ";
 			// 
-			// pictureBox2
+			// groupBox5
 			// 
-			this.pictureBox2.Image = global::AGV_GUI.Properties.Resources.left1;
-			this.pictureBox2.InitialImage = global::AGV_GUI.Properties.Resources.right;
-			this.pictureBox2.Location = new System.Drawing.Point(874, 292);
-			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(79, 45);
-			this.pictureBox2.TabIndex = 3;
-			this.pictureBox2.TabStop = false;
+			this.groupBox5.Controls.Add(this.chkBox_filterInput);
+			this.groupBox5.Location = new System.Drawing.Point(1281, 17);
+			this.groupBox5.Name = "groupBox5";
+			this.groupBox5.Size = new System.Drawing.Size(118, 345);
+			this.groupBox5.TabIndex = 4;
+			this.groupBox5.TabStop = false;
+			this.groupBox5.Text = "Misc";
 			// 
-			// pictureBox1
+			// chkBox_filterInput
 			// 
-			this.pictureBox1.Image = global::AGV_GUI.Properties.Resources.right1;
-			this.pictureBox1.InitialImage = global::AGV_GUI.Properties.Resources.right;
-			this.pictureBox1.Location = new System.Drawing.Point(874, 292);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(79, 45);
-			this.pictureBox1.TabIndex = 2;
-			this.pictureBox1.TabStop = false;
+			this.chkBox_filterInput.Appearance = System.Windows.Forms.Appearance.Button;
+			this.chkBox_filterInput.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.chkBox_filterInput.Location = new System.Drawing.Point(7, 20);
+			this.chkBox_filterInput.Name = "chkBox_filterInput";
+			this.chkBox_filterInput.Size = new System.Drawing.Size(105, 44);
+			this.chkBox_filterInput.TabIndex = 0;
+			this.chkBox_filterInput.Text = "Filtro Encoder";
+			this.chkBox_filterInput.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.chkBox_filterInput.UseVisualStyleBackColor = true;
+			this.chkBox_filterInput.CheckedChanged += new System.EventHandler(this.chkBox_filterInput_CheckedChanged);
 			// 
 			// PID_Tuning
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1028, 750);
+			this.ClientSize = new System.Drawing.Size(1406, 750);
+			this.Controls.Add(this.groupBox5);
 			this.Controls.Add(this.statusStrip1);
 			this.Controls.Add(this.groupBox3);
 			this.Controls.Add(this.groupBox1);
 			this.Margin = new System.Windows.Forms.Padding(2);
 			this.Name = "PID_Tuning";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "PID_Viewer";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PID_Config_FormClosing);
 			this.groupBox1.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
 			this.groupBox4.ResumeLayout(false);
 			this.groupBox4.PerformLayout();
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			this.groupBox5.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -369,5 +438,9 @@
 		private System.Windows.Forms.ToolStripStatusLabel status_speedMsg;
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.PictureBox pictureBox2;
+		private System.Windows.Forms.Button but_rMot_exportCSV;
+		private System.Windows.Forms.Button but_lMot_exportCSV;
+		private System.Windows.Forms.GroupBox groupBox5;
+		private System.Windows.Forms.CheckBox chkBox_filterInput;
 	}
 }

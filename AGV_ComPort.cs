@@ -86,6 +86,7 @@ namespace AGV_GUI
 			if(port.IsOpen)
 			{
 				port.Write(s + "\r\n");
+				port.DiscardOutBuffer();	// fflush()
 			}
 		}
 		/// <summary>

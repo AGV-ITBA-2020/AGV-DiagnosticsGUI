@@ -60,9 +60,9 @@ namespace AGV_GUI
 
 		private AGV_ComPort agv;
 		private SpeedSeries speedData;
-		private ScottPlot.PlottableSignal plot_vR;
+		private ScottPlot.PlottableSignal plot_sR;
 		private ScottPlot.PlottableSignal plot_wR;
-		private ScottPlot.PlottableSignal plot_vL;
+		private ScottPlot.PlottableSignal plot_sL;
 		private ScottPlot.PlottableSignal plot_wL;
 		enum MOTOR{
 			R,
@@ -91,14 +91,14 @@ namespace AGV_GUI
 						speedData.AddData(msg.data[0], msg.data[1], msg.data[2], msg.data[3]);	// Add data to series.
 						// Plot right motor speed
 						plotter_rMotor.plt.Clear();
-						plot_vR = plotter_rMotor.plt.PlotSignal(speedData.sR.ToArray(), color: speedData.vR_color, label: "sR");
-						plot_wR = plotter_rMotor.plt.PlotSignal(speedData.wR.ToArray(), color: speedData.wR_color, label: "wR");
+						plot_sR = plotter_rMotor.plt.PlotSignal(speedData.sR.ToArray(), color: speedData.vR_color);
+						plot_wR = plotter_rMotor.plt.PlotSignal(speedData.wR.ToArray(), color: speedData.wR_color);
 						plotter_rMotor.plt.AxisAuto();
 						plotter_rMotor.Render();
 						// Plot left motor speed
 						plotter_lMotor.plt.Clear();
-						plot_vL = plotter_lMotor.plt.PlotSignal(speedData.sL.ToArray(), color: speedData.vL_color, label: "sL");
-						plot_wL = plotter_lMotor.plt.PlotSignal(speedData.wL.ToArray(), color: speedData.wL_color, label: "wL");
+						plot_sL = plotter_lMotor.plt.PlotSignal(speedData.sL.ToArray(), color: speedData.vL_color);
+						plot_wL = plotter_lMotor.plt.PlotSignal(speedData.wL.ToArray(), color: speedData.wL_color);
 						plotter_lMotor.plt.AxisAuto();
 						plotter_lMotor.Render();
 					}
@@ -196,6 +196,21 @@ namespace AGV_GUI
 			txtBox_lMtr_Ki.Text = "";
 			txtBox_lMtr_Kd.Text = "";
 			AskAgvForPidSettings(MOTOR.L);
+		}
+
+		private void but_rMot_exportCSV_Click(object sender, EventArgs e)
+		{
+			plot_wR.SaveCSV("./RIGHT ENCODER MEAS.csv");
+		}
+
+		private void but_lMot_exportCSV_Click(object sender, EventArgs e)
+		{
+			plot_wL.SaveCSV("./LEFT ENCODER MEAS.csv");
+		}
+
+		private void chkBox_filterInput_CheckedChanged(object sender, EventArgs e)
+		{
+			agv.PortSendData("PIDV>FILT;"+ (chkBox_filterInput.Checked ? "1.0" : "0.0"));
 		}
 	}
 }
