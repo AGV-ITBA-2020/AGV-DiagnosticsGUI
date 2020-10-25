@@ -28,7 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
 			this.trackBar_linealSpeed = new System.Windows.Forms.TrackBar();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
@@ -38,7 +37,6 @@
 			this.label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
-			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			this.but_stop = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.trackBar_linealSpeed)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.trackBar_angularSpeed)).BeginInit();
@@ -176,7 +174,6 @@
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label6;
-		private System.Windows.Forms.Timer timer1;
 		private System.Windows.Forms.Button but_stop;
 	}
 }

@@ -13,6 +13,8 @@ namespace AGV_GUI
 {
 	public partial class Joystick : Form
 	{
+		private const int TIMER_BASE_PERIOD = 5;	// multiple of timer ticks from main form.
+		private int timerCount = 0;
 		private AGV_ComPort agv;
 		private bool cmdRun;
 		public Joystick(AGV_ComPort a)
@@ -22,21 +24,20 @@ namespace AGV_GUI
 			trackBar_linealSpeed.Value = 0;
 			agv = a;
 			agv.activeModules.joystick = true;
-			timer1 = new System.Windows.Forms.Timer();
-			timer1.Interval = 500;	// 500ms period
-			timer1.Tick += new EventHandler(TimerEventProcessor);
-			timer1.Start();
 			agv.PortSendData("JOY>START");
 			cmdRun = true;
 		}
-		private void TimerEventProcessor(Object myObject, EventArgs myEventArgs) 
+		public void Joystick_TimerCallback() 
 		{
-			if(cmdRun == true)
+			if(++timerCount >= TIMER_BASE_PERIOD )
 			{
-				SendSpeedValues(v:trackBar_linealSpeed.Value, w: trackBar_angularSpeed.Value);
+				timerCount = 0;
+				if(cmdRun == true)
+					SendSpeedValues(v:trackBar_linealSpeed.Value, w: trackBar_angularSpeed.Value);
+				else
+					eStop();
 			}
-			else
-				eStop();
+
 		}
 
 		private void Joystick_KeyPressed(object sender, KeyEventArgs e)
@@ -92,8 +93,6 @@ namespace AGV_GUI
 		{
 			agv.PortSendData("JOY>STOP");
 			agv.activeModules.joystick = false;
-			timer1.Stop();
-			timer1.Dispose();
 		}
 	}
 }

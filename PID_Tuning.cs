@@ -13,14 +13,16 @@ namespace AGV_GUI
 {
 	public partial class PID_Tuning : Form
 	{
+		private const int TIMER_BASE_PERIOD = 2;	// multiple of timer ticks from main form.
+		private int timerCount = 0;
 		class SpeedSeries
 		{
-			private const int MAX_SERIES_SIZE = 500;	// # of points 
+			private const int MAX_SERIES_SIZE = 200;	// # of points 
 			public int currentSize;
-			public List<double> vR;
-			public List<double> vL;
-			public List<double> wR;
-			public List<double> wL;
+			public List<double> sR;	// Setpoint right wheel
+			public List<double> sL;	// Setpoint left wheel
+			public List<double> wR;	// Angular speed of right wheel
+			public List<double> wL; // Angular speed of left wheel
 			public Color vR_color = Color.Blue;
 			public Color wR_color = Color.Red;
 			public Color vL_color = Color.Blue;
@@ -29,27 +31,27 @@ namespace AGV_GUI
 			{
 				if(currentSize == MAX_SERIES_SIZE)
 				{
-					vR.RemoveAt(0);
+					sR.RemoveAt(0);
 					wR.RemoveAt(0);
-					vL.RemoveAt(0);
+					sL.RemoveAt(0);
 					wL.RemoveAt(0);
 					currentSize--;
 				}
-				vR.Add(vRnew);
+				sR.Add(vRnew);
 				wR.Add(wRnew);
-				vL.Add(vLnew);
+				sL.Add(vLnew);
 				wL.Add(wLnew);
 				currentSize++;
 			}
 			public SpeedSeries()
 			{
 				currentSize = 0;
-				vR = new List<double>(MAX_SERIES_SIZE);
-				vL = new List<double>(MAX_SERIES_SIZE);
+				sR = new List<double>(MAX_SERIES_SIZE);
+				sL = new List<double>(MAX_SERIES_SIZE);
 				wR = new List<double>(MAX_SERIES_SIZE);
 				wL = new List<double>(MAX_SERIES_SIZE);
-				vR.Capacity = MAX_SERIES_SIZE;
-				vL.Capacity = MAX_SERIES_SIZE;
+				sR.Capacity = MAX_SERIES_SIZE;
+				sL.Capacity = MAX_SERIES_SIZE;
 				wR.Capacity = MAX_SERIES_SIZE;
 				wL.Capacity = MAX_SERIES_SIZE;
 			}
@@ -75,9 +77,6 @@ namespace AGV_GUI
 			agv.activeModules.pidTuning = true;
 			agv.PortSendData("PIDV>START");
 			speedData = new SpeedSeries();
-			
-			AskAgvForPidSettings(MOTOR.R);
-			AskAgvForPidSettings(MOTOR.L);
 		}
 		public void PID_ProcessNewMsg()
 		{
@@ -92,14 +91,14 @@ namespace AGV_GUI
 						speedData.AddData(msg.data[0], msg.data[1], msg.data[2], msg.data[3]);	// Add data to series.
 						// Plot right motor speed
 						plotter_rMotor.plt.Clear();
-						plot_vR = plotter_rMotor.plt.PlotSignal(speedData.vR.ToArray(), color: speedData.vR_color);
-						plot_wR = plotter_rMotor.plt.PlotSignal(speedData.wR.ToArray(), color: speedData.wR_color);
+						plot_vR = plotter_rMotor.plt.PlotSignal(speedData.sR.ToArray(), color: speedData.vR_color, label: "sR");
+						plot_wR = plotter_rMotor.plt.PlotSignal(speedData.wR.ToArray(), color: speedData.wR_color, label: "wR");
 						plotter_rMotor.plt.AxisAuto();
 						plotter_rMotor.Render();
 						// Plot left motor speed
 						plotter_lMotor.plt.Clear();
-						plot_vL = plotter_lMotor.plt.PlotSignal(speedData.vL.ToArray(), color: speedData.vL_color);
-						plot_wL = plotter_lMotor.plt.PlotSignal(speedData.wL.ToArray(), color: speedData.wL_color);
+						plot_vL = plotter_lMotor.plt.PlotSignal(speedData.sL.ToArray(), color: speedData.vL_color, label: "sL");
+						plot_wL = plotter_lMotor.plt.PlotSignal(speedData.wL.ToArray(), color: speedData.wL_color, label: "wL");
 						plotter_lMotor.plt.AxisAuto();
 						plotter_lMotor.Render();
 					}
@@ -121,6 +120,14 @@ namespace AGV_GUI
 
 			}
 
+		}
+		public void PIDViewer_TimerCallback()
+		{
+			if(++timerCount >= TIMER_BASE_PERIOD )
+			{
+				timerCount = 0;
+				AskAgvForSpeed();
+			}
 		}
 		private void PID_Config_FormClosing(object sender, FormClosingEventArgs e)
 		{
@@ -152,6 +159,10 @@ namespace AGV_GUI
 
 			return retVal;
 		}
+		private void AskAgvForSpeed()
+		{
+			agv.PortSendData("PIDV>WHSPD");
+		}
 		private void AskAgvForPidSettings(MOTOR x)
 		{
 			agv.PortSendData("PIDV>" + (x==MOTOR.R ? "rRPID" : "rLPID"));
@@ -174,10 +185,16 @@ namespace AGV_GUI
 		}
 		private void rMtr_updateKpid_Click(object sender, EventArgs e)
 		{
+			txtBox_rMtr_Kp.Text = "";
+			txtBox_rMtr_Ki.Text = "";
+			txtBox_rMtr_Kd.Text = "";
 			AskAgvForPidSettings(MOTOR.R);
 		}
 		private void lMtr_updateKpid_Click(object sender, EventArgs e)
 		{
+			txtBox_lMtr_Kp.Text = "";
+			txtBox_lMtr_Ki.Text = "";
+			txtBox_lMtr_Kd.Text = "";
 			AskAgvForPidSettings(MOTOR.L);
 		}
 	}

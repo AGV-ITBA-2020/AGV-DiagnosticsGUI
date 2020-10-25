@@ -19,6 +19,9 @@ namespace AGV_GUI
 		public Form1()
 		{
 			InitializeComponent();
+			mainTimer = new System.Windows.Forms.Timer();
+			mainTimer.Interval = 200;	// 500ms period
+			mainTimer.Tick += new EventHandler(MainTimerCallback);
 		}
 		#region MAIN_FORM_MISC_METHODS
 		private void Form1_Load(object sender, EventArgs e)
@@ -188,14 +191,34 @@ namespace AGV_GUI
 		{
 			joystickForm = new Joystick(agv);
 			joystickForm.Show();
+			CheckForTimerAction();
 		}
 
 		private void but_startPidTuning_Click(object sender, EventArgs e)
 		{
 			pidForm = new PID_Tuning(agv);
 			pidForm.Show();
+			CheckForTimerAction();
 		}
+		private void CheckForTimerAction()
+		{
+			if(agv.activeModules.joystick || agv.activeModules.pidTuning )
+			{
+				if( !mainTimer.Enabled )
+					mainTimer.Start();
+			}
+			else
+				mainTimer.Stop();
+		}
+		private void MainTimerCallback(Object myObject, EventArgs myEventArgs) 
+		{
+		//	if(agv.activeModules.pidTuning == true)
+		//		pidForm.PIDViewer_TimerCallback();
+			if(agv.activeModules.joystick == true)
+				joystickForm.Joystick_TimerCallback();
+			CheckForTimerAction();	// Check whether to shut down timer
 
+		}
 		private void but_refreshPorts_Click(object sender, EventArgs e)
 		{
 			PortsUpdateSelectBox();

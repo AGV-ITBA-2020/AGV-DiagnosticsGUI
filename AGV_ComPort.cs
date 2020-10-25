@@ -84,7 +84,9 @@ namespace AGV_GUI
 		public void PortSendData(string s)
 		{
 			if(port.IsOpen)
+			{
 				port.Write(s + "\r\n");
+			}
 		}
 		/// <summary>
 		/// Messages come as:
@@ -132,7 +134,7 @@ namespace AGV_GUI
 							value = -999;
 							break;
 						}
-						msg.data.Add(value);
+						msg.data.Add(value/100);
 							
 						if(divIndex < subS.Length)	// Then prepare for next param
 						{

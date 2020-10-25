@@ -35,6 +35,7 @@
 			this.selBox_ComPorts = new System.Windows.Forms.ComboBox();
 			this.but_OpenPort = new System.Windows.Forms.Button();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.but_refreshPorts = new System.Windows.Forms.Button();
 			this.selBox_baudRate = new System.Windows.Forms.ComboBox();
 			this.txtBox_sendData = new System.Windows.Forms.TextBox();
 			this.but_Send = new System.Windows.Forms.Button();
@@ -45,10 +46,10 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.but_startJoystick = new System.Windows.Forms.Button();
 			this.but_startPidTuning = new System.Windows.Forms.Button();
-			this.but_refreshPorts = new System.Windows.Forms.Button();
 			this.but_clearConsole = new System.Windows.Forms.Button();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.status_mainForm = new System.Windows.Forms.ToolStripStatusLabel();
+			this.mainTimer = new System.Windows.Forms.Timer(this.components);
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
@@ -95,6 +96,16 @@
 			this.groupBox1.TabIndex = 4;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Port control";
+			// 
+			// but_refreshPorts
+			// 
+			this.but_refreshPorts.Location = new System.Drawing.Point(313, 19);
+			this.but_refreshPorts.Name = "but_refreshPorts";
+			this.but_refreshPorts.Size = new System.Drawing.Size(75, 23);
+			this.but_refreshPorts.TabIndex = 4;
+			this.but_refreshPorts.Text = "Refresh";
+			this.but_refreshPorts.UseVisualStyleBackColor = true;
+			this.but_refreshPorts.Click += new System.EventHandler(this.but_refreshPorts_Click);
 			// 
 			// selBox_baudRate
 			// 
@@ -193,16 +204,6 @@
 			this.but_startPidTuning.UseVisualStyleBackColor = true;
 			this.but_startPidTuning.Click += new System.EventHandler(this.but_startPidTuning_Click);
 			// 
-			// but_refreshPorts
-			// 
-			this.but_refreshPorts.Location = new System.Drawing.Point(313, 19);
-			this.but_refreshPorts.Name = "but_refreshPorts";
-			this.but_refreshPorts.Size = new System.Drawing.Size(75, 23);
-			this.but_refreshPorts.TabIndex = 4;
-			this.but_refreshPorts.Text = "Refresh";
-			this.but_refreshPorts.UseVisualStyleBackColor = true;
-			this.but_refreshPorts.Click += new System.EventHandler(this.but_refreshPorts_Click);
-			// 
 			// but_clearConsole
 			// 
 			this.but_clearConsole.Location = new System.Drawing.Point(412, 388);
@@ -228,6 +229,10 @@
 			this.status_mainForm.Name = "status_mainForm";
 			this.status_mainForm.Size = new System.Drawing.Size(22, 17);
 			this.status_mainForm.Text = "     ";
+			// 
+			// mainTimer
+			// 
+			this.mainTimer.Interval = 200;
 			// 
 			// Form1
 			// 
@@ -278,6 +283,7 @@
 		private System.Windows.Forms.Button but_clearConsole;
 		private System.Windows.Forms.StatusStrip statusStrip1;
 		private System.Windows.Forms.ToolStripStatusLabel status_mainForm;
+		private System.Windows.Forms.Timer mainTimer;
 	}
 }
 

@@ -53,15 +53,15 @@
 			this.plotter_lMotor = new ScottPlot.FormsPlot();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.status_speedMsg = new System.Windows.Forms.ToolStripStatusLabel();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.pictureBox2 = new System.Windows.Forms.PictureBox();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// plotter_rMotor
@@ -294,25 +294,25 @@
 			this.status_speedMsg.Size = new System.Drawing.Size(28, 17);
 			this.status_speedMsg.Text = "       ";
 			// 
-			// pictureBox1
-			// 
-			this.pictureBox1.Image = global::AGV_GUI.Properties.Resources.right;
-			this.pictureBox1.InitialImage = global::AGV_GUI.Properties.Resources.right;
-			this.pictureBox1.Location = new System.Drawing.Point(874, 292);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(79, 45);
-			this.pictureBox1.TabIndex = 2;
-			this.pictureBox1.TabStop = false;
-			// 
 			// pictureBox2
 			// 
-			this.pictureBox2.Image = global::AGV_GUI.Properties.Resources.left;
+			this.pictureBox2.Image = global::AGV_GUI.Properties.Resources.left1;
 			this.pictureBox2.InitialImage = global::AGV_GUI.Properties.Resources.right;
 			this.pictureBox2.Location = new System.Drawing.Point(874, 292);
 			this.pictureBox2.Name = "pictureBox2";
 			this.pictureBox2.Size = new System.Drawing.Size(79, 45);
 			this.pictureBox2.TabIndex = 3;
 			this.pictureBox2.TabStop = false;
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.Image = global::AGV_GUI.Properties.Resources.right1;
+			this.pictureBox1.InitialImage = global::AGV_GUI.Properties.Resources.right;
+			this.pictureBox1.Location = new System.Drawing.Point(874, 292);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(79, 45);
+			this.pictureBox1.TabIndex = 2;
+			this.pictureBox1.TabStop = false;
 			// 
 			// PID_Tuning
 			// 
@@ -334,8 +334,8 @@
 			this.groupBox4.PerformLayout();
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
