@@ -48,7 +48,7 @@
 			// 
 			// trackBar_linealSpeed
 			// 
-			this.trackBar_linealSpeed.Location = new System.Drawing.Point(112, 13);
+			this.trackBar_linealSpeed.Location = new System.Drawing.Point(107, 13);
 			this.trackBar_linealSpeed.Maximum = 100;
 			this.trackBar_linealSpeed.Name = "trackBar_linealSpeed";
 			this.trackBar_linealSpeed.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -59,7 +59,7 @@
 			// 
 			// label1
 			// 
-			this.label1.Location = new System.Drawing.Point(33, 70);
+			this.label1.Location = new System.Drawing.Point(28, 70);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(73, 28);
 			this.label1.TabIndex = 7;
@@ -76,7 +76,7 @@
 			// trackBar_angularSpeed
 			// 
 			this.trackBar_angularSpeed.LargeChange = 10;
-			this.trackBar_angularSpeed.Location = new System.Drawing.Point(11, 185);
+			this.trackBar_angularSpeed.Location = new System.Drawing.Point(6, 185);
 			this.trackBar_angularSpeed.Maximum = 100;
 			this.trackBar_angularSpeed.Minimum = -100;
 			this.trackBar_angularSpeed.Name = "trackBar_angularSpeed";
@@ -100,7 +100,7 @@
 			this.panel1.Controls.Add(this.label2);
 			this.panel1.Location = new System.Drawing.Point(12, 12);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(291, 298);
+			this.panel1.Size = new System.Drawing.Size(274, 298);
 			this.panel1.TabIndex = 10;
 			// 
 			// txt_actualAngularSpeed
@@ -114,7 +114,7 @@
 			// txt_actualLinearSpeed
 			// 
 			this.txt_actualLinearSpeed.Enabled = false;
-			this.txt_actualLinearSpeed.Location = new System.Drawing.Point(163, 78);
+			this.txt_actualLinearSpeed.Location = new System.Drawing.Point(158, 78);
 			this.txt_actualLinearSpeed.Name = "txt_actualLinearSpeed";
 			this.txt_actualLinearSpeed.Size = new System.Drawing.Size(100, 20);
 			this.txt_actualLinearSpeed.TabIndex = 15;
@@ -122,7 +122,7 @@
 			// txt_linearMin
 			// 
 			this.txt_linearMin.AutoSize = true;
-			this.txt_linearMin.Location = new System.Drawing.Point(144, 160);
+			this.txt_linearMin.Location = new System.Drawing.Point(139, 160);
 			this.txt_linearMin.Name = "txt_linearMin";
 			this.txt_linearMin.Size = new System.Drawing.Size(13, 13);
 			this.txt_linearMin.TabIndex = 13;
@@ -131,7 +131,7 @@
 			// txt_linearMax
 			// 
 			this.txt_linearMax.AutoSize = true;
-			this.txt_linearMax.Location = new System.Drawing.Point(144, 13);
+			this.txt_linearMax.Location = new System.Drawing.Point(139, 13);
 			this.txt_linearMax.Name = "txt_linearMax";
 			this.txt_linearMax.Size = new System.Drawing.Size(13, 13);
 			this.txt_linearMax.TabIndex = 12;
@@ -140,7 +140,7 @@
 			// txt_angularMax
 			// 
 			this.txt_angularMax.AutoSize = true;
-			this.txt_angularMax.Location = new System.Drawing.Point(8, 217);
+			this.txt_angularMax.Location = new System.Drawing.Point(13, 217);
 			this.txt_angularMax.Name = "txt_angularMax";
 			this.txt_angularMax.Size = new System.Drawing.Size(13, 13);
 			this.txt_angularMax.TabIndex = 14;
@@ -149,7 +149,7 @@
 			// txt_angularMin
 			// 
 			this.txt_angularMin.AutoSize = true;
-			this.txt_angularMin.Location = new System.Drawing.Point(260, 217);
+			this.txt_angularMin.Location = new System.Drawing.Point(242, 217);
 			this.txt_angularMin.Name = "txt_angularMin";
 			this.txt_angularMin.Size = new System.Drawing.Size(16, 13);
 			this.txt_angularMin.TabIndex = 11;
@@ -170,14 +170,16 @@
 			// 
 			// chkbox_binarySpeed
 			// 
+			this.chkbox_binarySpeed.AutoCheck = false;
 			this.chkbox_binarySpeed.AutoSize = true;
-			this.chkbox_binarySpeed.Location = new System.Drawing.Point(309, 37);
+			this.chkbox_binarySpeed.Location = new System.Drawing.Point(292, 15);
 			this.chkbox_binarySpeed.Name = "chkbox_binarySpeed";
-			this.chkbox_binarySpeed.Size = new System.Drawing.Size(107, 17);
+			this.chkbox_binarySpeed.Size = new System.Drawing.Size(123, 17);
 			this.chkbox_binarySpeed.TabIndex = 17;
 			this.chkbox_binarySpeed.TabStop = false;
-			this.chkbox_binarySpeed.Text = "Velocidad binaria";
+			this.chkbox_binarySpeed.Text = "Velocidad binaria (T)";
 			this.chkbox_binarySpeed.UseVisualStyleBackColor = true;
+			this.chkbox_binarySpeed.CheckedChanged += new System.EventHandler(this.chkbox_binarySpeed_CheckedChanged);
 			// 
 			// Joystick
 			// 

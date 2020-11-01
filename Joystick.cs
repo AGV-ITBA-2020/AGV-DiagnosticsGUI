@@ -97,6 +97,9 @@ namespace AGV_GUI
 					else
 						eStopResume();
 					break;
+				case Keys.T:
+					chkbox_binarySpeed.Checked = !chkbox_binarySpeed.Checked;
+					break;
 			}
 		}
 		private void eStopResume()
@@ -167,6 +170,12 @@ namespace AGV_GUI
 						eStopResume();
 					break;
 			}
+		}
+
+		private void chkbox_binarySpeed_CheckedChanged(object sender, EventArgs e)
+		{
+			trackBar_angularSpeed.Value = 0;
+			trackBar_linealSpeed.Value = 0;
 		}
 	}
 }

@@ -378,7 +378,7 @@
 			this.groupBox5.Controls.Add(this.chkBox_filterInput);
 			this.groupBox5.Location = new System.Drawing.Point(1157, 12);
 			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(261, 73);
+			this.groupBox5.Size = new System.Drawing.Size(261, 56);
 			this.groupBox5.TabIndex = 4;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "Misc";
@@ -389,7 +389,7 @@
 			this.chkBox_filterInput.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			this.chkBox_filterInput.Location = new System.Drawing.Point(7, 20);
 			this.chkBox_filterInput.Name = "chkBox_filterInput";
-			this.chkBox_filterInput.Size = new System.Drawing.Size(105, 44);
+			this.chkBox_filterInput.Size = new System.Drawing.Size(105, 27);
 			this.chkBox_filterInput.TabIndex = 0;
 			this.chkBox_filterInput.Text = "Filtro Encoder";
 			this.chkBox_filterInput.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -499,9 +499,9 @@
 			this.groupBox7.Controls.Add(this.chkbox_startTrackGraph);
 			this.groupBox7.Controls.Add(this.plotter_trackError);
 			this.groupBox7.Controls.Add(this.groupBox6);
-			this.groupBox7.Location = new System.Drawing.Point(1158, 92);
+			this.groupBox7.Location = new System.Drawing.Point(1158, 74);
 			this.groupBox7.Name = "groupBox7";
-			this.groupBox7.Size = new System.Drawing.Size(260, 633);
+			this.groupBox7.Size = new System.Drawing.Size(260, 651);
 			this.groupBox7.TabIndex = 5;
 			this.groupBox7.TabStop = false;
 			this.groupBox7.Text = "Control Camino";
@@ -509,6 +509,8 @@
 			// chkbox_startTrackGraph
 			// 
 			this.chkbox_startTrackGraph.Appearance = System.Windows.Forms.Appearance.Button;
+			this.chkbox_startTrackGraph.Checked = true;
+			this.chkbox_startTrackGraph.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.chkbox_startTrackGraph.Location = new System.Drawing.Point(7, 130);
 			this.chkbox_startTrackGraph.Name = "chkbox_startTrackGraph";
 			this.chkbox_startTrackGraph.Size = new System.Drawing.Size(247, 24);
@@ -522,7 +524,7 @@
 			// 
 			this.plotter_trackError.Location = new System.Drawing.Point(7, 160);
 			this.plotter_trackError.Name = "plotter_trackError";
-			this.plotter_trackError.Size = new System.Drawing.Size(247, 467);
+			this.plotter_trackError.Size = new System.Drawing.Size(247, 479);
 			this.plotter_trackError.TabIndex = 3;
 			// 
 			// PID_Tuning

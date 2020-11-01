@@ -16,6 +16,7 @@ namespace AGV_GUI
 	{
 		private const int TIMER_BASE_PERIOD = 2;	// multiple of timer ticks from main form.
 		private int timerCount = 0;
+		private readonly double TRACK_GRAPH_LIMITS = 1.2;
 		class SpeedSeries
 		{
 			private const int MAX_SERIES_SIZE = 200;	// # of points 
@@ -111,7 +112,8 @@ namespace AGV_GUI
 			trackData = new TrackSeries();
 			trackData.xs.Add(0);	// For algorithm init
 			trackData.tError.Add(0);	
-			plotter_trackError.plt.AxisBounds(-1.2, 1.2);
+			plotter_trackError.plt.AxisBounds(-TRACK_GRAPH_LIMITS, TRACK_GRAPH_LIMITS);
+			plotter_trackError.plt.Ticks(displayTicksY: false);
 			plotter_trackError.Render();
 		}
 		public void PID_ProcessNewMsg()
@@ -186,7 +188,7 @@ namespace AGV_GUI
 			plot_track = plotter_trackError.plt.PlotScatter(trackData.tError.ToArray(), trackData.xs.ToArray());
 			plotter_trackError.plt.PlotVLine(x: 0, color:Color.Red, label: "SetPoint", lineStyle: LineStyle.Dot);
 			plotter_trackError.plt.AxisAutoY();
-			plotter_trackError.plt.Axis(-1.2, 1.2);
+			plotter_trackError.plt.Axis(-TRACK_GRAPH_LIMITS, TRACK_GRAPH_LIMITS);
 			plotter_trackError.Render();
 		}
 	/*	public void PIDViewer_TimerCallback()
