@@ -50,6 +50,7 @@
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.status_mainForm = new System.Windows.Forms.ToolStripStatusLabel();
 			this.mainTimer = new System.Windows.Forms.Timer(this.components);
+			this.but_startRtosDiag = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
@@ -234,11 +235,22 @@
 			// 
 			this.mainTimer.Interval = 200;
 			// 
+			// but_startRtosDiag
+			// 
+			this.but_startRtosDiag.Location = new System.Drawing.Point(634, 239);
+			this.but_startRtosDiag.Name = "but_startRtosDiag";
+			this.but_startRtosDiag.Size = new System.Drawing.Size(147, 34);
+			this.but_startRtosDiag.TabIndex = 12;
+			this.but_startRtosDiag.Text = "FreeRTOS Diag";
+			this.but_startRtosDiag.UseVisualStyleBackColor = true;
+			this.but_startRtosDiag.Click += new System.EventHandler(this.but_startRtosDiag_Click);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 467);
+			this.Controls.Add(this.but_startRtosDiag);
 			this.Controls.Add(this.statusStrip1);
 			this.Controls.Add(this.but_clearConsole);
 			this.Controls.Add(this.but_startPidTuning);
@@ -284,6 +296,7 @@
 		private System.Windows.Forms.StatusStrip statusStrip1;
 		private System.Windows.Forms.ToolStripStatusLabel status_mainForm;
 		private System.Windows.Forms.Timer mainTimer;
+		private System.Windows.Forms.Button but_startRtosDiag;
 	}
 }
 

@@ -18,6 +18,9 @@ namespace AGV_GUI
 		private readonly double[] ANGULAR_SPEED_MAP = {-1, 1};	// Angular speed goes from -1 to 1rad/s
 		private readonly int[] LINEAR_SPEED_TRACK_LIMITS = {0, 100};
 		private readonly int[] ANGULAR_SPEED_TRACK_LIMITS = {-100, 100};
+		private readonly int[] DIGITAL_LINEAR_SPEED = {0, 40};
+		private readonly int[] DIGITAL_ANGULAR_SPEED = {-25, 25};
+
 		private double linearMapAlpha;
 		private double angularMapAlpha;
 		private int timerCount = 0;
@@ -61,19 +64,32 @@ namespace AGV_GUI
 
 		private void Joystick_KeyPressed(object sender, KeyEventArgs e)
 		{
+			bool binarySpeed = chkbox_binarySpeed.Checked;
 			switch(e.KeyCode)
 			{
 				case Keys.W:
-					trackBar_linealSpeed.Value += (trackBar_linealSpeed.Value < trackBar_linealSpeed.Maximum ? 1 : 0);
+					if(binarySpeed)
+						trackBar_linealSpeed.Value = DIGITAL_LINEAR_SPEED[1];
+					else
+						trackBar_linealSpeed.Value += (trackBar_linealSpeed.Value < trackBar_linealSpeed.Maximum ? 1 : 0);
 					break;
 				case Keys.S:
-					trackBar_linealSpeed.Value -= (trackBar_linealSpeed.Value > trackBar_linealSpeed.Minimum ? 1 : 0);
+					if(binarySpeed)
+						trackBar_linealSpeed.Value = DIGITAL_LINEAR_SPEED[0];
+					else
+						trackBar_linealSpeed.Value -= (trackBar_linealSpeed.Value > trackBar_linealSpeed.Minimum ? 1 : 0);
 					break;
 				case Keys.A:
-					trackBar_angularSpeed.Value += (trackBar_angularSpeed.Value < trackBar_angularSpeed.Maximum ? 1 : 0);
+					if(binarySpeed)
+						trackBar_angularSpeed.Value = DIGITAL_ANGULAR_SPEED[0];
+					else
+						trackBar_angularSpeed.Value += (trackBar_angularSpeed.Value < trackBar_angularSpeed.Maximum ? 1 : 0);
 					break;
 				case Keys.D:
-					trackBar_angularSpeed.Value -= (trackBar_angularSpeed.Value > trackBar_angularSpeed.Minimum ? 1 : 0);
+					if(binarySpeed)
+						trackBar_angularSpeed.Value = DIGITAL_ANGULAR_SPEED[1];
+					else
+						trackBar_angularSpeed.Value -= (trackBar_angularSpeed.Value > trackBar_angularSpeed.Minimum ? 1 : 0);
 					break;
 				case Keys.Space:
 					if(cmdRun == true)
@@ -126,6 +142,31 @@ namespace AGV_GUI
 		private void trackBar_linealSpeed_Scroll(object sender, EventArgs e)
 		{
 
+		}
+
+		private void Joystick_KeyReleased(object sender, KeyEventArgs e)
+		{
+			if(chkbox_binarySpeed.Checked == false)	// nothing to do
+				return;
+			// Reset all speed to 0
+			switch(e.KeyCode)
+			{
+				case Keys.W:
+						trackBar_linealSpeed.Value = DIGITAL_LINEAR_SPEED[0];
+					break;
+				case Keys.A:
+						trackBar_angularSpeed.Value = 0;
+					break;
+				case Keys.D:
+						trackBar_angularSpeed.Value = 0;
+					break;
+				case Keys.Space:
+					if(cmdRun == true)
+						eStop();
+					else
+						eStopResume();
+					break;
+			}
 		}
 	}
 }

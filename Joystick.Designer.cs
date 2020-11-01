@@ -33,13 +33,14 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.trackBar_angularSpeed = new System.Windows.Forms.TrackBar();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.txt_actualAngularSpeed = new System.Windows.Forms.TextBox();
+			this.txt_actualLinearSpeed = new System.Windows.Forms.TextBox();
 			this.txt_linearMin = new System.Windows.Forms.Label();
 			this.txt_linearMax = new System.Windows.Forms.Label();
 			this.txt_angularMax = new System.Windows.Forms.Label();
 			this.txt_angularMin = new System.Windows.Forms.Label();
 			this.but_stop = new System.Windows.Forms.Button();
-			this.txt_actualLinearSpeed = new System.Windows.Forms.TextBox();
-			this.txt_actualAngularSpeed = new System.Windows.Forms.TextBox();
+			this.chkbox_binarySpeed = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.trackBar_linealSpeed)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.trackBar_angularSpeed)).BeginInit();
 			this.panel1.SuspendLayout();
@@ -102,6 +103,22 @@
 			this.panel1.Size = new System.Drawing.Size(291, 298);
 			this.panel1.TabIndex = 10;
 			// 
+			// txt_actualAngularSpeed
+			// 
+			this.txt_actualAngularSpeed.Enabled = false;
+			this.txt_actualAngularSpeed.Location = new System.Drawing.Point(79, 270);
+			this.txt_actualAngularSpeed.Name = "txt_actualAngularSpeed";
+			this.txt_actualAngularSpeed.Size = new System.Drawing.Size(100, 20);
+			this.txt_actualAngularSpeed.TabIndex = 17;
+			// 
+			// txt_actualLinearSpeed
+			// 
+			this.txt_actualLinearSpeed.Enabled = false;
+			this.txt_actualLinearSpeed.Location = new System.Drawing.Point(163, 78);
+			this.txt_actualLinearSpeed.Name = "txt_actualLinearSpeed";
+			this.txt_actualLinearSpeed.Size = new System.Drawing.Size(100, 20);
+			this.txt_actualLinearSpeed.TabIndex = 15;
+			// 
 			// txt_linearMin
 			// 
 			this.txt_linearMin.AutoSize = true;
@@ -151,27 +168,23 @@
 			this.but_stop.UseVisualStyleBackColor = false;
 			this.but_stop.Click += new System.EventHandler(this.but_stop_Click);
 			// 
-			// txt_actualLinearSpeed
+			// chkbox_binarySpeed
 			// 
-			this.txt_actualLinearSpeed.Enabled = false;
-			this.txt_actualLinearSpeed.Location = new System.Drawing.Point(163, 78);
-			this.txt_actualLinearSpeed.Name = "txt_actualLinearSpeed";
-			this.txt_actualLinearSpeed.Size = new System.Drawing.Size(100, 20);
-			this.txt_actualLinearSpeed.TabIndex = 15;
-			// 
-			// txt_actualAngularSpeed
-			// 
-			this.txt_actualAngularSpeed.Enabled = false;
-			this.txt_actualAngularSpeed.Location = new System.Drawing.Point(79, 270);
-			this.txt_actualAngularSpeed.Name = "txt_actualAngularSpeed";
-			this.txt_actualAngularSpeed.Size = new System.Drawing.Size(100, 20);
-			this.txt_actualAngularSpeed.TabIndex = 17;
+			this.chkbox_binarySpeed.AutoSize = true;
+			this.chkbox_binarySpeed.Location = new System.Drawing.Point(309, 37);
+			this.chkbox_binarySpeed.Name = "chkbox_binarySpeed";
+			this.chkbox_binarySpeed.Size = new System.Drawing.Size(107, 17);
+			this.chkbox_binarySpeed.TabIndex = 17;
+			this.chkbox_binarySpeed.TabStop = false;
+			this.chkbox_binarySpeed.Text = "Velocidad binaria";
+			this.chkbox_binarySpeed.UseVisualStyleBackColor = true;
 			// 
 			// Joystick
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(419, 334);
+			this.Controls.Add(this.chkbox_binarySpeed);
 			this.Controls.Add(this.but_stop);
 			this.Controls.Add(this.panel1);
 			this.KeyPreview = true;
@@ -180,11 +193,13 @@
 			this.Text = "Joystick";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Joystick_FormClosing);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Joystick_KeyPressed);
+			this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Joystick_KeyReleased);
 			((System.ComponentModel.ISupportInitialize)(this.trackBar_linealSpeed)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.trackBar_angularSpeed)).EndInit();
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -201,5 +216,6 @@
 		private System.Windows.Forms.Button but_stop;
 		private System.Windows.Forms.TextBox txt_actualAngularSpeed;
 		private System.Windows.Forms.TextBox txt_actualLinearSpeed;
+		private System.Windows.Forms.CheckBox chkbox_binarySpeed;
 	}
 }

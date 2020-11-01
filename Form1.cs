@@ -234,5 +234,10 @@ namespace AGV_GUI
 		{
 			rTxtBox_Output.Clear();
 		}
+
+		private void but_startRtosDiag_Click(object sender, EventArgs e)
+		{
+
+		}
 	}
 }
