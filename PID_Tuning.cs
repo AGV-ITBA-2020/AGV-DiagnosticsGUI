@@ -44,6 +44,7 @@ namespace AGV_GUI
 				sL.Add(vLnew);
 				wL.Add(wLnew);
 				currentSize++;
+				
 			}
 			public SpeedSeries()
 			{
@@ -187,8 +188,10 @@ namespace AGV_GUI
 			plotter_trackError.plt.Clear();
 			plot_track = plotter_trackError.plt.PlotScatter(trackData.tError.ToArray(), trackData.xs.ToArray());
 			plotter_trackError.plt.PlotVLine(x: 0, color:Color.Red, label: "SetPoint", lineStyle: LineStyle.Dot);
-			plotter_trackError.plt.AxisAutoY();
-			plotter_trackError.plt.Axis(-TRACK_GRAPH_LIMITS, TRACK_GRAPH_LIMITS);
+			plotter_lMotor.plt.AxisAuto();
+		//	plotter_trackError.plt.AxisAutoY();
+		//	plotter_trackError.plt.AxisAutoX();
+		//	plotter_trackError.plt.Axis(-TRACK_GRAPH_LIMITS, TRACK_GRAPH_LIMITS);
 			plotter_trackError.Render();
 		}
 	/*	public void PIDViewer_TimerCallback()
@@ -271,12 +274,9 @@ namespace AGV_GUI
 		private void but_rMot_exportCSV_Click(object sender, EventArgs e)
 		{
 			plot_wR.SaveCSV("./RIGHT ENCODER MEAS.csv");
-		}
-
-		private void but_lMot_exportCSV_Click(object sender, EventArgs e)
-		{
 			plot_wL.SaveCSV("./LEFT ENCODER MEAS.csv");
 		}
+
 
 		private void chkBox_filterInput_CheckedChanged(object sender, EventArgs e)
 		{
