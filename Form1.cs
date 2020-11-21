@@ -198,11 +198,13 @@ namespace AGV_GUI
 			joystickForm = new Joystick(agv);
 			joystickForm.Show();
 			CheckForTimerAction();
+			if(agv.activeModules.pidTuning)
+				pidForm.PID_AddJoystick(joystickForm);
 		}
 
 		private void but_startPidTuning_Click(object sender, EventArgs e)
 		{
-			pidForm = new PID_Tuning(agv);
+			pidForm = new PID_Tuning(agv, (agv.activeModules.joystick ? joystickForm : null));	// If joystick is active, send form to pid viewer.
 			pidForm.Show();
 			CheckForTimerAction();
 		}

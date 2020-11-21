@@ -90,6 +90,7 @@ namespace AGV_GUI
 		}
 
 		private AGV_ComPort agv;
+		private Joystick joy = null;
 		private SpeedSeries speedData;
 		private TrackSeries trackData;
 		private ScottPlot.PlottableSignal plot_sR;
@@ -102,7 +103,7 @@ namespace AGV_GUI
 			L
 		}
 
-		public PID_Tuning(AGV_ComPort a)
+		public PID_Tuning(AGV_ComPort a, Joystick joys = null)
 		{
 			InitializeComponent();
 			
@@ -116,6 +117,12 @@ namespace AGV_GUI
 			plotter_trackError.plt.AxisBounds(-TRACK_GRAPH_LIMITS, TRACK_GRAPH_LIMITS);
 			plotter_trackError.plt.Ticks(displayTicksY: false);
 			plotter_trackError.Render();
+			if(joys != null)
+				PID_AddJoystick(joys);
+		}
+		public void PID_AddJoystick(Joystick joys)
+		{
+			joy = joys;
 		}
 		public void PID_ProcessNewMsg()
 		{
@@ -308,6 +315,19 @@ namespace AGV_GUI
 		private void chkbox_startTrackGraph_CheckedChanged(object sender, EventArgs e)
 		{
 			agv.PortSendData("PIDV>TRACK;" + (chkbox_startTrackGraph.Checked ? "1.0" : "0.0"));
+		}
+
+
+		private void PID_Tuning_KeyPress(object sender, KeyEventArgs e)
+		{
+			if(joy != null)
+				joy.Joystick_KeyPressed(sender, e);
+		}
+
+		private void PID_Tuning_KeyReleased(object sender, KeyEventArgs e)
+		{
+			if(joy != null)
+				joy.Joystick_KeyReleased(sender, e);
 		}
 	}
 }

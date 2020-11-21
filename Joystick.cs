@@ -62,7 +62,7 @@ namespace AGV_GUI
 			}
 		}
 
-		private void Joystick_KeyPressed(object sender, KeyEventArgs e)
+		public void Joystick_KeyPressed(object sender, KeyEventArgs e)
 		{
 			bool binarySpeed = chkbox_binarySpeed.Checked;
 			switch(e.KeyCode)
@@ -147,7 +147,7 @@ namespace AGV_GUI
 
 		}
 
-		private void Joystick_KeyReleased(object sender, KeyEventArgs e)
+		public void Joystick_KeyReleased(object sender, KeyEventArgs e)
 		{
 			if(chkbox_binarySpeed.Checked == false)	// nothing to do
 				return;
@@ -162,12 +162,6 @@ namespace AGV_GUI
 					break;
 				case Keys.D:
 						trackBar_angularSpeed.Value = 0;
-					break;
-				case Keys.Space:
-					if(cmdRun == true)
-						eStop();
-					else
-						eStopResume();
 					break;
 			}
 		}
