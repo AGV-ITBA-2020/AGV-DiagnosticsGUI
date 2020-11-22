@@ -18,7 +18,7 @@ namespace AGV_GUI
 		private readonly double[] ANGULAR_SPEED_MAP = {-1, 1};	// Angular speed goes from -1 to 1rad/s
 		private readonly int[] LINEAR_SPEED_TRACK_LIMITS = {0, 100};
 		private readonly int[] ANGULAR_SPEED_TRACK_LIMITS = {-100, 100};
-		private readonly int[] DIGITAL_LINEAR_SPEED = {0, 40};
+		private int[] DIGITAL_LINEAR_SPEED = {0, 40};
 		private readonly int[] DIGITAL_ANGULAR_SPEED = {-25, 25};
 
 		private double linearMapAlpha;
@@ -42,6 +42,7 @@ namespace AGV_GUI
 			txt_linearMax.Text = LINEAR_SPEED_MAP[1].ToString();
 			txt_angularMin.Text = ANGULAR_SPEED_MAP[0].ToString();
 			txt_angularMax.Text = ANGULAR_SPEED_MAP[1].ToString();
+			txt_DigLinealSpeed.Text = DIGITAL_LINEAR_SPEED[1].ToString();
 			trackBar_linealSpeed.Value = 0;
 			trackBar_angularSpeed.Value = 0;
 
@@ -99,6 +100,14 @@ namespace AGV_GUI
 					break;
 				case Keys.T:
 					chkbox_binarySpeed.Checked = !chkbox_binarySpeed.Checked;
+					break;
+				case Keys.NumPad1:
+					DIGITAL_LINEAR_SPEED[1] -= (DIGITAL_LINEAR_SPEED[1] >= 10 ? 10 : 0);
+					txt_DigLinealSpeed.Text = DIGITAL_LINEAR_SPEED[1].ToString();
+					break;
+				case Keys.NumPad2:
+					DIGITAL_LINEAR_SPEED[1] += (DIGITAL_LINEAR_SPEED[1] <= 90 ? 10 : 0);
+					txt_DigLinealSpeed.Text = DIGITAL_LINEAR_SPEED[1].ToString();
 					break;
 			}
 		}
