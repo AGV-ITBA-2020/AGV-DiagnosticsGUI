@@ -14,3 +14,4 @@ E:\GitHub\AGV-GUI\AGV-DiagnosticsGUI\obj\Release\AGV-GUI.csproj.CoreCompileInput
 E:\GitHub\AGV-GUI\AGV-DiagnosticsGUI\obj\Release\AGV-GUI.csproj.CopyComplete
 E:\GitHub\AGV-GUI\AGV-DiagnosticsGUI\obj\Release\AGV-GUI.exe
 E:\GitHub\AGV-GUI\AGV-DiagnosticsGUI\obj\Release\AGV-GUI.pdb
+E:\GitHub\AGV-GUI\AGV-DiagnosticsGUI\obj\Release\AGV_GUI.RtosDiag.resources

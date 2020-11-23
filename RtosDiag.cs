@@ -12,9 +12,29 @@ namespace AGV_GUI
 {
 	public partial class RtosDiag : Form
 	{
-		public RtosDiag()
+		private AGV_ComPort agv;
+		public RtosDiag(AGV_ComPort a)
 		{
 			InitializeComponent();
+			agv = a;
+			agv.activeModules.rtosDiag = true;
+			agv.PortSendData("RTOS>START");
+		}
+
+		private void but_getRuntimeStats_Click(object sender, EventArgs e)
+		{
+			agv.PortSendData("RTOS>STRT");
+		}
+
+		private void but_getTaskStats_Click(object sender, EventArgs e)
+		{
+			agv.PortSendData("RTOS>STTSK");
+		}
+
+		private void RtosDiag_Load(object sender, EventArgs e)
+		{
+			agv.PortSendData("RTOS>STOP");
+			agv.activeModules.rtosDiag = false;
 		}
 	}
 }

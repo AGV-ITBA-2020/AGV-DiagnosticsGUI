@@ -16,6 +16,7 @@ namespace AGV_GUI
 	{
 		PID_Tuning pidForm;
 		Joystick joystickForm;
+		RtosDiag rtosForm;
 		public Form1()
 		{
 			InitializeComponent();
@@ -239,7 +240,22 @@ namespace AGV_GUI
 
 		private void but_startRtosDiag_Click(object sender, EventArgs e)
 		{
+			rtosForm = new RtosDiag(agv);
+			rtosForm.Show();
+		}
 
+		private void but_resetTools_Click(object sender, EventArgs e)
+		{
+			if(agv.activeModules.joystick)
+			{
+				joystickForm.Close();
+				but_startJoystick_Click(sender, e);
+			}
+			if(agv.activeModules.pidTuning)
+			{
+				pidForm.Close();
+				but_startPidTuning_Click(sender, e);
+			}
 		}
 	}
 }

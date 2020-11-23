@@ -25,3 +25,4 @@ E:\GitHub\AGV-GUI\AGV-DiagnosticsGUI\obj\Debug\AGV-GUI.pdb
 E:\GitHub\AGV-GUI\AGV-DiagnosticsGUI\obj\Debug\AGV-GUI.csprojAssemblyReference.cache
 E:\GitHub\AGV-GUI\AGV-DiagnosticsGUI\obj\Debug\AGV_GUI.PID_Tuning.resources
 E:\GitHub\AGV-GUI\AGV-DiagnosticsGUI\obj\Debug\AGV_GUI.Form1.resources
+E:\GitHub\AGV-GUI\AGV-DiagnosticsGUI\obj\Debug\AGV_GUI.RtosDiag.resources

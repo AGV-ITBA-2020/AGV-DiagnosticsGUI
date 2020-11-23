@@ -101,11 +101,11 @@ namespace AGV_GUI
 				case Keys.T:
 					chkbox_binarySpeed.Checked = !chkbox_binarySpeed.Checked;
 					break;
-				case Keys.NumPad1:
+				case Keys.PageDown:
 					DIGITAL_LINEAR_SPEED[1] -= (DIGITAL_LINEAR_SPEED[1] >= 10 ? 10 : 0);
 					txt_DigLinealSpeed.Text = DIGITAL_LINEAR_SPEED[1].ToString();
 					break;
-				case Keys.NumPad2:
+				case Keys.PageUp:
 					DIGITAL_LINEAR_SPEED[1] += (DIGITAL_LINEAR_SPEED[1] <= 90 ? 10 : 0);
 					txt_DigLinealSpeed.Text = DIGITAL_LINEAR_SPEED[1].ToString();
 					break;

@@ -17,12 +17,13 @@ namespace AGV_GUI
 		PC,
 		PC_MOVE,
 		CM,
-		DIAG
+		RTOS
 	}
 	public struct GUI_MODULES
 	{
 		public bool joystick;
 		public bool pidTuning;
+		public bool rtosDiag;
 	}
 	public class AGV_MsgDataPair
 	{
@@ -54,8 +55,8 @@ namespace AGV_GUI
 				case "CM":
 					retVal = MSG_ORIGIN_T.CM;
 					break;
-				case "DIAG":
-					retVal = MSG_ORIGIN_T.DIAG;
+				case "RTOS":
+					retVal = MSG_ORIGIN_T.RTOS;
 					break;
 			}
 			return retVal;

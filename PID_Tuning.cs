@@ -61,7 +61,7 @@ namespace AGV_GUI
 		}
 		class TrackSeries
 		{
-			private const int MAX_SERIES_SIZE = 50;	// # of points 
+			private const int MAX_SERIES_SIZE = 100;	// # of points 
 			public int currentSize;
 			public List<double> tError;	// Track error
 			public List<double> xs;	// Data time vector
