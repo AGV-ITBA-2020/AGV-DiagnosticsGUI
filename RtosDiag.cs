@@ -31,7 +31,7 @@ namespace AGV_GUI
 			agv.PortSendData("RTOS>STTSK");
 		}
 
-		private void RtosDiag_Load(object sender, EventArgs e)
+		private void RtosDiag_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			agv.PortSendData("RTOS>STOP");
 			agv.activeModules.rtosDiag = false;

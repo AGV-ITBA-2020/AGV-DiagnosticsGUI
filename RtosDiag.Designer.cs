@@ -63,7 +63,7 @@
 			this.Name = "RtosDiag";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "RtosDiag";
-			this.Load += new System.EventHandler(this.RtosDiag_Load);
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RtosDiag_FormClosing);
 			this.ResumeLayout(false);
 
 		}
