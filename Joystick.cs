@@ -18,8 +18,8 @@ namespace AGV_GUI
 		private readonly double[] ANGULAR_SPEED_MAP = {-1, 1};	// Angular speed goes from -1 to 1rad/s
 		private readonly int[] LINEAR_SPEED_TRACK_LIMITS = {0, 100};
 		private readonly int[] ANGULAR_SPEED_TRACK_LIMITS = {-100, 100};
-		private int[] DIGITAL_LINEAR_SPEED = {0, 40};
-		private readonly int[] DIGITAL_ANGULAR_SPEED = {-25, 25};
+		private int[] DIGITAL_LINEAR_SPEED = {0, 45};
+		private readonly int[] DIGITAL_ANGULAR_SPEED = {-100, 100};
 
 		private double linearMapAlpha;
 		private double angularMapAlpha;
@@ -179,6 +179,11 @@ namespace AGV_GUI
 		{
 			trackBar_angularSpeed.Value = 0;
 			trackBar_linealSpeed.Value = 0;
+		}
+
+		private void btn_autoGiro_CheckedChanged(object sender, EventArgs e)
+		{
+			agv.PortSendData("JOY>TURN;" + (btn_autoGiro.Checked ? 1.0 : 0.0));
 		}
 	}
 }

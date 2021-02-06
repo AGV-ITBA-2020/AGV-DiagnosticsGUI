@@ -60,7 +60,7 @@
 			// rTxtBox_Output
 			// 
 			this.rTxtBox_Output.Location = new System.Drawing.Point(16, 89);
-			this.rTxtBox_Output.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.rTxtBox_Output.Margin = new System.Windows.Forms.Padding(4);
 			this.rTxtBox_Output.Name = "rTxtBox_Output";
 			this.rTxtBox_Output.ReadOnly = true;
 			this.rTxtBox_Output.Size = new System.Drawing.Size(635, 511);
@@ -72,7 +72,7 @@
 			// 
 			this.selBox_ComPorts.FormattingEnabled = true;
 			this.selBox_ComPorts.Location = new System.Drawing.Point(8, 23);
-			this.selBox_ComPorts.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.selBox_ComPorts.Margin = new System.Windows.Forms.Padding(4);
 			this.selBox_ComPorts.Name = "selBox_ComPorts";
 			this.selBox_ComPorts.Size = new System.Drawing.Size(160, 24);
 			this.selBox_ComPorts.TabIndex = 1;
@@ -81,7 +81,7 @@
 			// but_OpenPort
 			// 
 			this.but_OpenPort.Location = new System.Drawing.Point(309, 23);
-			this.but_OpenPort.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.but_OpenPort.Margin = new System.Windows.Forms.Padding(4);
 			this.but_OpenPort.Name = "but_OpenPort";
 			this.but_OpenPort.Size = new System.Drawing.Size(100, 28);
 			this.but_OpenPort.TabIndex = 2;
@@ -96,9 +96,9 @@
 			this.groupBox1.Controls.Add(this.selBox_ComPorts);
 			this.groupBox1.Controls.Add(this.but_OpenPort);
 			this.groupBox1.Location = new System.Drawing.Point(16, 15);
-			this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
 			this.groupBox1.Size = new System.Drawing.Size(525, 66);
 			this.groupBox1.TabIndex = 4;
 			this.groupBox1.TabStop = false;
@@ -107,7 +107,7 @@
 			// but_refreshPorts
 			// 
 			this.but_refreshPorts.Location = new System.Drawing.Point(417, 23);
-			this.but_refreshPorts.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.but_refreshPorts.Margin = new System.Windows.Forms.Padding(4);
 			this.but_refreshPorts.Name = "but_refreshPorts";
 			this.but_refreshPorts.Size = new System.Drawing.Size(100, 28);
 			this.but_refreshPorts.TabIndex = 4;
@@ -122,7 +122,7 @@
             "9600",
             "115200"});
 			this.selBox_baudRate.Location = new System.Drawing.Point(177, 23);
-			this.selBox_baudRate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.selBox_baudRate.Margin = new System.Windows.Forms.Padding(4);
 			this.selBox_baudRate.Name = "selBox_baudRate";
 			this.selBox_baudRate.Size = new System.Drawing.Size(84, 24);
 			this.selBox_baudRate.TabIndex = 3;
@@ -131,7 +131,7 @@
 			// txtBox_sendData
 			// 
 			this.txtBox_sendData.Location = new System.Drawing.Point(659, 578);
-			this.txtBox_sendData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.txtBox_sendData.Margin = new System.Windows.Forms.Padding(4);
 			this.txtBox_sendData.Name = "txtBox_sendData";
 			this.txtBox_sendData.Size = new System.Drawing.Size(269, 22);
 			this.txtBox_sendData.TabIndex = 5;
@@ -140,7 +140,7 @@
 			// but_Send
 			// 
 			this.but_Send.Location = new System.Drawing.Point(937, 578);
-			this.but_Send.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.but_Send.Margin = new System.Windows.Forms.Padding(4);
 			this.but_Send.Name = "but_Send";
 			this.but_Send.Size = new System.Drawing.Size(100, 25);
 			this.but_Send.TabIndex = 6;
@@ -155,9 +155,9 @@
 			this.groupBox2.Controls.Add(this.txtBox_LatestMsg_origin);
 			this.groupBox2.Controls.Add(this.label1);
 			this.groupBox2.Location = new System.Drawing.Point(835, 15);
-			this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
 			this.groupBox2.Size = new System.Drawing.Size(216, 95);
 			this.groupBox2.TabIndex = 7;
 			this.groupBox2.TabStop = false;
@@ -166,7 +166,7 @@
 			// txtBox_LatestMsg_id
 			// 
 			this.txtBox_LatestMsg_id.Location = new System.Drawing.Point(75, 55);
-			this.txtBox_LatestMsg_id.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.txtBox_LatestMsg_id.Margin = new System.Windows.Forms.Padding(4);
 			this.txtBox_LatestMsg_id.Name = "txtBox_LatestMsg_id";
 			this.txtBox_LatestMsg_id.ReadOnly = true;
 			this.txtBox_LatestMsg_id.Size = new System.Drawing.Size(132, 22);
@@ -185,7 +185,7 @@
 			// txtBox_LatestMsg_origin
 			// 
 			this.txtBox_LatestMsg_origin.Location = new System.Drawing.Point(76, 23);
-			this.txtBox_LatestMsg_origin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.txtBox_LatestMsg_origin.Margin = new System.Windows.Forms.Padding(4);
 			this.txtBox_LatestMsg_origin.Name = "txtBox_LatestMsg_origin";
 			this.txtBox_LatestMsg_origin.ReadOnly = true;
 			this.txtBox_LatestMsg_origin.Size = new System.Drawing.Size(132, 22);
@@ -204,29 +204,29 @@
 			// but_startJoystick
 			// 
 			this.but_startJoystick.Location = new System.Drawing.Point(845, 170);
-			this.but_startJoystick.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.but_startJoystick.Margin = new System.Windows.Forms.Padding(4);
 			this.but_startJoystick.Name = "but_startJoystick";
 			this.but_startJoystick.Size = new System.Drawing.Size(196, 42);
 			this.but_startJoystick.TabIndex = 8;
-			this.but_startJoystick.Text = "Joystick";
+			this.but_startJoystick.Text = "AGV Controller";
 			this.but_startJoystick.UseVisualStyleBackColor = true;
 			this.but_startJoystick.Click += new System.EventHandler(this.but_startJoystick_Click);
 			// 
 			// but_startPidTuning
 			// 
 			this.but_startPidTuning.Location = new System.Drawing.Point(845, 230);
-			this.but_startPidTuning.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.but_startPidTuning.Margin = new System.Windows.Forms.Padding(4);
 			this.but_startPidTuning.Name = "but_startPidTuning";
 			this.but_startPidTuning.Size = new System.Drawing.Size(196, 42);
 			this.but_startPidTuning.TabIndex = 9;
-			this.but_startPidTuning.Text = "PID Tuning";
+			this.but_startPidTuning.Text = "AGV PID Tuning";
 			this.but_startPidTuning.UseVisualStyleBackColor = true;
 			this.but_startPidTuning.Click += new System.EventHandler(this.but_startPidTuning_Click);
 			// 
 			// but_clearConsole
 			// 
 			this.but_clearConsole.Location = new System.Drawing.Point(659, 542);
-			this.but_clearConsole.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.but_clearConsole.Margin = new System.Windows.Forms.Padding(4);
 			this.but_clearConsole.Name = "but_clearConsole";
 			this.but_clearConsole.Size = new System.Drawing.Size(100, 28);
 			this.but_clearConsole.TabIndex = 10;
@@ -259,11 +259,11 @@
 			// but_startRtosDiag
 			// 
 			this.but_startRtosDiag.Location = new System.Drawing.Point(841, 289);
-			this.but_startRtosDiag.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.but_startRtosDiag.Margin = new System.Windows.Forms.Padding(4);
 			this.but_startRtosDiag.Name = "but_startRtosDiag";
 			this.but_startRtosDiag.Size = new System.Drawing.Size(196, 42);
 			this.but_startRtosDiag.TabIndex = 12;
-			this.but_startRtosDiag.Text = "FreeRTOS Diag";
+			this.but_startRtosDiag.Text = "AGV RTOS Diagnostics";
 			this.but_startRtosDiag.UseVisualStyleBackColor = true;
 			this.but_startRtosDiag.Click += new System.EventHandler(this.but_startRtosDiag_Click);
 			// 
@@ -294,7 +294,7 @@
 			this.Controls.Add(this.txtBox_sendData);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.rTxtBox_Output);
-			this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "Form1";
 			this.Text = "AGV-GUI v1.0";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);

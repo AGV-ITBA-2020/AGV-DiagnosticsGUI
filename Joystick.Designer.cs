@@ -42,6 +42,7 @@
 			this.but_stop = new System.Windows.Forms.Button();
 			this.chkbox_binarySpeed = new System.Windows.Forms.CheckBox();
 			this.txt_DigLinealSpeed = new System.Windows.Forms.TextBox();
+			this.btn_autoGiro = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.trackBar_linealSpeed)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.trackBar_angularSpeed)).BeginInit();
 			this.panel1.SuspendLayout();
@@ -50,7 +51,7 @@
 			// trackBar_linealSpeed
 			// 
 			this.trackBar_linealSpeed.Location = new System.Drawing.Point(143, 16);
-			this.trackBar_linealSpeed.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.trackBar_linealSpeed.Margin = new System.Windows.Forms.Padding(4);
 			this.trackBar_linealSpeed.Maximum = 100;
 			this.trackBar_linealSpeed.Name = "trackBar_linealSpeed";
 			this.trackBar_linealSpeed.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -81,7 +82,7 @@
 			// 
 			this.trackBar_angularSpeed.LargeChange = 10;
 			this.trackBar_angularSpeed.Location = new System.Drawing.Point(8, 228);
-			this.trackBar_angularSpeed.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.trackBar_angularSpeed.Margin = new System.Windows.Forms.Padding(4);
 			this.trackBar_angularSpeed.Maximum = 100;
 			this.trackBar_angularSpeed.Minimum = -100;
 			this.trackBar_angularSpeed.Name = "trackBar_angularSpeed";
@@ -104,7 +105,7 @@
 			this.panel1.Controls.Add(this.trackBar_angularSpeed);
 			this.panel1.Controls.Add(this.label2);
 			this.panel1.Location = new System.Drawing.Point(16, 15);
-			this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.panel1.Margin = new System.Windows.Forms.Padding(4);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(365, 367);
 			this.panel1.TabIndex = 10;
@@ -113,7 +114,7 @@
 			// 
 			this.txt_actualAngularSpeed.Enabled = false;
 			this.txt_actualAngularSpeed.Location = new System.Drawing.Point(105, 332);
-			this.txt_actualAngularSpeed.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.txt_actualAngularSpeed.Margin = new System.Windows.Forms.Padding(4);
 			this.txt_actualAngularSpeed.Name = "txt_actualAngularSpeed";
 			this.txt_actualAngularSpeed.Size = new System.Drawing.Size(132, 22);
 			this.txt_actualAngularSpeed.TabIndex = 17;
@@ -122,7 +123,7 @@
 			// 
 			this.txt_actualLinearSpeed.Enabled = false;
 			this.txt_actualLinearSpeed.Location = new System.Drawing.Point(211, 96);
-			this.txt_actualLinearSpeed.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.txt_actualLinearSpeed.Margin = new System.Windows.Forms.Padding(4);
 			this.txt_actualLinearSpeed.Name = "txt_actualLinearSpeed";
 			this.txt_actualLinearSpeed.Size = new System.Drawing.Size(132, 22);
 			this.txt_actualLinearSpeed.TabIndex = 15;
@@ -173,7 +174,7 @@
 			this.but_stop.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.but_stop.ForeColor = System.Drawing.Color.Black;
 			this.but_stop.Location = new System.Drawing.Point(412, 143);
-			this.but_stop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.but_stop.Margin = new System.Windows.Forms.Padding(4);
 			this.but_stop.Name = "but_stop";
 			this.but_stop.Size = new System.Drawing.Size(141, 110);
 			this.but_stop.TabIndex = 16;
@@ -186,7 +187,7 @@
 			this.chkbox_binarySpeed.AutoCheck = false;
 			this.chkbox_binarySpeed.AutoSize = true;
 			this.chkbox_binarySpeed.Location = new System.Drawing.Point(389, 18);
-			this.chkbox_binarySpeed.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.chkbox_binarySpeed.Margin = new System.Windows.Forms.Padding(4);
 			this.chkbox_binarySpeed.Name = "chkbox_binarySpeed";
 			this.chkbox_binarySpeed.Size = new System.Drawing.Size(162, 21);
 			this.chkbox_binarySpeed.TabIndex = 17;
@@ -204,17 +205,33 @@
 			this.txt_DigLinealSpeed.Size = new System.Drawing.Size(132, 22);
 			this.txt_DigLinealSpeed.TabIndex = 18;
 			// 
+			// btn_autoGiro
+			// 
+			this.btn_autoGiro.Appearance = System.Windows.Forms.Appearance.Button;
+			this.btn_autoGiro.Checked = true;
+			this.btn_autoGiro.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.btn_autoGiro.Location = new System.Drawing.Point(412, 282);
+			this.btn_autoGiro.Name = "btn_autoGiro";
+			this.btn_autoGiro.Size = new System.Drawing.Size(135, 52);
+			this.btn_autoGiro.TabIndex = 19;
+			this.btn_autoGiro.Text = "Auto giro";
+			this.btn_autoGiro.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.btn_autoGiro.UseVisualStyleBackColor = true;
+			this.btn_autoGiro.Visible = false;
+			this.btn_autoGiro.CheckedChanged += new System.EventHandler(this.btn_autoGiro_CheckedChanged);
+			// 
 			// Joystick
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(559, 411);
+			this.Controls.Add(this.btn_autoGiro);
 			this.Controls.Add(this.txt_DigLinealSpeed);
 			this.Controls.Add(this.chkbox_binarySpeed);
 			this.Controls.Add(this.but_stop);
 			this.Controls.Add(this.panel1);
 			this.KeyPreview = true;
-			this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "Joystick";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Joystick";
@@ -245,5 +262,6 @@
 		private System.Windows.Forms.TextBox txt_actualLinearSpeed;
 		private System.Windows.Forms.CheckBox chkbox_binarySpeed;
 		private System.Windows.Forms.TextBox txt_DigLinealSpeed;
+		private System.Windows.Forms.CheckBox btn_autoGiro;
 	}
 }
